@@ -1,0 +1,82 @@
+import NavBar from "../../other/navbar"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+
+import { GraphQLClient, gql } from "graphql-request"
+
+const graphcms = new GraphQLClient(
+    "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cld4h09aa002801td1oul5cku/master"
+);
+
+const gqlQuery = gql`
+    {
+        posts {
+            title
+            slug
+            datePublished
+            tags
+            coverPhoto {url}
+        }
+    }
+`;
+
+export async function getStaticProps(){
+    const {posts} = await graphcms.request(gqlQuery)
+    return {
+        props: {
+            posts,
+        }
+    }
+}
+
+export default function Blog({posts}) {
+    const [activeTag, setActiveTag] = useState("All")
+    const [sortedPosts, setPosts] = useState([])
+
+    const tags = ["All", "Bunkers", "Abandoned", "Industrial"]
+
+    // Filter posts by tag
+    useEffect(() => {
+        if(activeTag === "All"){setPosts(posts)} 
+        else { setPosts(posts.filter(post => post.tags.includes(activeTag))) }
+    }, [activeTag])
+
+    return (
+        <main>
+            <NavBar />
+            <section id="BlogContent">
+                <div className="inner">
+                    <div className="tagContainer flexcenter">
+                        {tags.map((tag, i) => {
+                            return (
+                                <div key={i} className={`tag ${tag === activeTag ? "active":""}`} onClick={() => setActiveTag(tag)}>
+                                    <span>{tag.toUpperCase()}</span>
+                                </div>)
+                        })}
+                    </div>
+                    <div className="postContainer">
+                        {  typeof sortedPosts !== undefined ? sortedPosts.map((post, i) => {
+                            return (
+                                <div key={i} className="itemWrapper">
+                                    <div className="itemInner">
+                                        <Link href={`/blog/${post.slug}`}>
+                                            <div className="imgContainer">
+                                                <img src={post.coverPhoto.url} alt="" />
+                                            </div>
+                                        </Link>
+                                        <div className="textContainer">
+                                            <p className="date">{post.datePublished}</p>
+                                            <Link href={`/blog/${post.slug}`}>
+                                                <h2>{post.title}</h2>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }): <p>No posts found</p>}
+                    </div>
+                </div>
+            </section>
+        </main>
+    )
+}

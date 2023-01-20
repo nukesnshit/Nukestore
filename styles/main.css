@@ -1,0 +1,106 @@
+section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: var(--fz-md);
+    padding: 0 20px;
+}
+
+#Hero{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    #HeroContainer{
+        position: absolute;
+        left: 60%;
+        height: 40%;
+    }
+        #HeroTitle{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            z-index: 1;
+            font-size: var(--fz-title);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--pad-5x);
+        }
+            #HeroTitle svg{
+                color: var(--color-black);
+                width: 70%;
+                height: 70%;
+            }
+        .heroText{
+            display: flex;
+            gap: 10px;
+        }
+
+#HeroNav{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    letter-spacing: 12px;
+}
+
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    background: var(--color-main);
+}
+.border{
+    border: solid 5px var(--color-black);
+}
+
+.background{
+    position: relative;
+    background: var(--color-black);
+}
+
+.tagContainer{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--fz-s);
+    font-family: var(--font-roboto);
+    gap: 10px;
+    padding: 20px 0;
+}
+    .tagContainer div{
+        cursor: pointer;
+        border: solid 1px var(--color-black);
+        padding: var(--pad-1x) var(--pad-2x);
+        background: var(--color-black);
+        transition: all 0.2s ease;
+    }
+    .tagContainer div.active{ border: solid 1px var(--color-main); color: var(--color-main); }
+    .tagContainer div:hover{border: solid 1px var(--color-main); }
+
+.title{
+    font-size: var(--fz-l);
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: var(--pad-5x);
+    color: var(--color-main);
+}
+
+
+.inner{
+    max-width: 1140px;
+    padding: 100px 0;
+}

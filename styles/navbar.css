@@ -1,0 +1,50 @@
+#NavBarWrapper{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    padding: 0 var(--pad-4x);
+    backdrop-filter: blur(6px);
+    z-index: 69;
+    font-family: var(--font-main);
+    transition: var(--transition);
+}
+    #NavBar{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    #NavLogo a {
+        gap: var(--pad-4x);
+        font-size: var(--fz-md);
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: all .5s ease;
+    } 
+        #NavLogo a:hover::after{all: unset;}
+        #NavLogo img{height: 70px; transition: var(--transition)}
+        #NavLogo a.active{color: var(--color-main);}
+
+    #LogoText{transition: var(--transition);}
+
+    #NavBar a{
+        text-decoration: none;
+        color: var(--color-slate);
+        transition: all .5s ease;
+        padding: 10px;
+    }
+        #NavBar a.active{color: var(--color-main);}
+
+    #NavBarWrapper ul{
+        display: flex;
+        gap: var(--pad-1x);
+    }
+        #NavBarWrapper ul li{
+            list-style: none;
+            height: 40px;
+        }

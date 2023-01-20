@@ -1,76 +1,29 @@
 :root {
-  --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --border-radius-small: 8px;
 
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --color-main: rgba(255,206,16,1);
+  --color-black: rgba(28,28,28,1);
+  --color-text: rgba(255,255,255,1);
 
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
+  --color-slate: #ccd6f6;
 
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
+  --font-main: "Calibre","Inter","San Francisco","SF Pro Text",-apple-system,system-ui,sans-serif;
+  --font-roboto: "Roboto","San Francisco","SF Pro Text",-apple-system,system-ui,sans-serif;
 
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
+  --fz-sm: 12px;
+  --fz-title: 64px;
+  --fz-s: 16px;
+  --fz-md: 22px;
+  --fz-l: 32px;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  --pad-1x: 10px;
+  --pad-2x: 20px;
+  --pad-3x: 30px;
+  --pad-4x: 40px;
+  --pad-5x: 50px;
 
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
+  --transition: all 0.2s ease;
 }
 
 * {
@@ -83,21 +36,89 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-a {
-  color: inherit;
+a{
+  cursor: pointer;
   text-decoration: none;
+}
+
+.aeffect {
+  display: inline-block;
+  position: relative;
+  color: var(--color-slate);
+}
+  .aeffect::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-main);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  .aeffect:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+    .fixBug::after{width: calc(100% - 12px);}
+
+.flexcenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bgclip{
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.postContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--pad-4x);
+  padding: var(--pad-2x) 0;
+  font-size: var(--fz-sm);
+  color: var(--color-main);
+}
+  .itemWrapper{
+    position: relative;
+    height: fit-content;
+    width: 250px;
+  }
+    .itemInner{
+      height: 100%;
+      width: 100%;
+    }
+      .imgContainer{
+        width: 250px;
+        height: 250px;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+      }
+        .imgContainer img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      .date{
+        color: var(--color-slate);
+        opacity: 0.8;
+        padding: var(--pad-1x) var(--pad-1x);
+        padding-left: 0;
+      }
+      .postContainer h2{color: var(--color-slate); transition: all .5s ease;}
+      .itemWrapper:hover h2 {color: var(--color-main)}
+
+.centerText{
+  text-align: center;
 }
 
 @media (prefers-color-scheme: dark) {
