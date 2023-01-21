@@ -1,6 +1,6 @@
 :root {
   --border-radius: 12px;
-  --border-radius-small: 8px;
+  --border-radius-small: 6px;
 
   --color-main: rgba(255,206,16,1);
   --color-black: rgba(28,28,28,1);
@@ -14,6 +14,7 @@
   --fz-sm: 12px;
   --fz-title: 64px;
   --fz-s: 16px;
+  --fz-m: 18px;
   --fz-md: 22px;
   --fz-l: 32px;
 
@@ -24,6 +25,9 @@
   --pad-5x: 50px;
 
   --transition: all 0.2s ease;
+
+  --max-width: 1140px;
+  --underline-translate: translate3d(0,0,0);
 }
 
 * {
@@ -35,8 +39,9 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
   scroll-behavior: smooth;
+  overflow: overlay;
+  overflow-x: hidden;
 }
 
 a{
@@ -119,6 +124,16 @@ a{
 
 .centerText{
   text-align: center;
+}
+
+::-webkit-scrollbar{
+  width: 14px;
+  background: transparent;}
+::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-color: var(--dark-slate);
+  border-radius: 10px;
 }
 
 @media (prefers-color-scheme: dark) {

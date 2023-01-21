@@ -11,6 +11,12 @@ import NavBar from '../other/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRadiation } from '@fortawesome/free-solid-svg-icons';
 
+var currentTime = 0
+export function calcAosTime(index, delay = 50, reset = false){
+    if(reset){currentTime = 0; return 0}
+    currentTime += index * delay
+    return currentTime
+}
 
 export default function Home() {
   const particlesInit = useCallback(async engine => {
@@ -38,7 +44,7 @@ export default function Home() {
         <section id="Hero">
           <div id="HeroContainer">
             <div id='HeroTitle'>
-              <div className="heroText">Nukes<span style={{color: "var(--color-main)"}}>n'</span> shit</div>
+              <div className="heroText">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</div>
             </div>
             <div id='HeroNav'>
               <Link className="aeffect fixBug" href='blog'>BLOG</Link>

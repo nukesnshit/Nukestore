@@ -15,37 +15,37 @@ const graphcms = new GraphQLClient(
 
 const gqlQuery = gql`
     {
-        posts {
+        products{
             title
             slug
-            datePublished
-            tags
-            coverPhoto {url}
+          	price
+            categories
+          	coverPhoto{url}
         }
     }
 `;
 
 export async function getStaticProps(){
-    const {posts} = await graphcms.request(gqlQuery)
+    const {products} = await graphcms.request(gqlQuery)
     return {
         props: {
-            posts,
+            products,
         },
         revalidate: 90,
     }
 }
 
-export default function Blog({posts}) {
+export default function Blog({products}) {
     const [activeTag, setActiveTag] = useState("All")
-    const [sortedPosts, setPosts] = useState([])
+    const [sortedItems, setSortedItems] = useState([])
 
-    const tags = ["All", "Bunkers", "Abandoned", "Industrial"]
+    const tags = ["All", "Dosimetric equipment", "Masks", "Radioactive stuff", "Other"]
 
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
     useEffect(() => {
-        if(activeTag === "All"){setPosts(posts)} 
-        else { setPosts(posts.filter(post => post.tags.includes(activeTag))) }
+        if(activeTag === "All"){setSortedItems(products)} 
+        else { setSortedItems( products.filter(product => product.categories.includes(activeTag))) }
     }, [activeTag])
 
     return (
@@ -53,7 +53,7 @@ export default function Blog({posts}) {
             <NavBar />
             <section id="BlogContent">
                 <div className="inner">
-                    <div className="title">blog</div>
+                    <div className="title">Store</div>
                     <div className="tagContainer flexcenter">
                         {tags.map((tag, i) => {
                             return (
@@ -62,20 +62,20 @@ export default function Blog({posts}) {
                                 </div>)
                         })}
                     </div>
-                    <div className="postContainer">
-                        {  typeof sortedPosts !== undefined ? sortedPosts.map((post, i) => {
+                    <div className="postContainer" id="itemContainer">
+                        {  typeof sortedItems !== undefined ? sortedItems.map((item, i) => {
                             return (
                                 <div key={i} className="itemWrapper" data-aos="fade-down" data-aos-delay={calcAosTime(i, 50, !i)}>
                                     <div className="itemInner">
-                                        <Link href={`/blog/${post.slug}`}>
+                                        <Link href={`/shop/${item.slug}`}>
                                             <div className="imgContainer">
-                                                <img src={post.coverPhoto.url} alt="" />
+                                                <div className="itemPrice">{item.price} €</div>
+                                                <img src={item.coverPhoto.url} alt="" />
                                             </div>
                                         </Link>
                                         <div className="textContainer">
-                                            <p className="date">{post.datePublished}</p>
-                                            <Link href={`/blog/${post.slug}`}>
-                                                <h2>{post.title}</h2>
+                                            <Link href={`/shop/${item.slug}`}>
+                                                <h2>{item.title}</h2>
                                             </Link>
                                         </div>
                                     </div>

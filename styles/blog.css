@@ -22,3 +22,7 @@ iframe{
 }
 #BlogContentMain .smallerImg{width: 80%;}
 #BlogContentMain .smallImg{width: 70%;}
+
+#BlogContent .title{
+    margin-bottom: var(--pad-2x);
+}

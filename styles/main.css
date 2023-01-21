@@ -78,6 +78,7 @@ section{
     font-family: var(--font-roboto);
     gap: 10px;
     padding: 20px 0;
+    color: var(--color-slate);
 }
     .tagContainer div{
         cursor: pointer;
@@ -101,6 +102,6 @@ section{
 
 
 .inner{
-    max-width: 1140px;
+    max-width: var(--max-width);
     padding: 100px 0;
 }
