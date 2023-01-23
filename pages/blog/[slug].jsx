@@ -1,5 +1,6 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
+import Footer from "../../other/footer";
 
 const graphcms = new GraphQLClient(
     "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cld4h09aa002801td1oul5cku/master"
@@ -34,7 +35,7 @@ export async function getStaticPaths() {
     const {posts} = await graphcms.request(slugList)
     return {
         paths: posts.map(post => ({ params: { slug: post.slug } })),
-        fallback: false
+        fallback: true,
     }
 }
 
@@ -52,9 +53,8 @@ export async function getStaticProps({params}) {
 
 
 export default function Blog({post}) {
-    console.log(post)
-
     return (
+        <>
         <main>
             <NavBar />
             <section id="BlogContentMain">
@@ -71,5 +71,7 @@ export default function Blog({post}) {
                 </div>
             </section>
         </main>
+        <Footer />
+        </>
     )
 }

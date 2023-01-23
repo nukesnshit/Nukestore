@@ -9,6 +9,10 @@
     font-size: var(--fz-s);
     width: 100%;
 }
+    #BlogHtml img{
+        max-width: 100%;
+        height: auto;
+    }
 
 iframe{
     position: relative;
@@ -20,6 +24,7 @@ iframe{
 #BlogContentMain img{
     padding: var(--pad-4x) 0;
 }
+
 #BlogContentMain .smallerImg{width: 80%;}
 #BlogContentMain .smallImg{width: 70%;}
 

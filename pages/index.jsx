@@ -6,6 +6,7 @@ import { particlesSettings } from '../other/particles';
 
 import Link from 'next/link';
 import NavBar from '../other/navbar';
+import Footer from '../other/footer';
 
 //icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -56,12 +57,33 @@ export default function Home() {
         <Particles id="tsparticles" options={particlesSettings} init={particlesInit} loaded={particlesLoaded} />
         </section>
         <section className='background'>
-          <div className='inner' id="About">
-            <div className='title'>About</div>
-            <p>Amongus dongus chongus</p>
+          <div className='inner'>
+            <div className='container'>
+              <div className='fancyTitle'>
+                <h5>NUKESNSHIT.COM</h5>
+                <h2>About us</h2>
+              </div>
+              <p className='textContent textCenter'>
+                We are a heritage preservation company, dedicated to the preservation and restoration of historical artifacts. Our services include expert restoration work, the buying and selling of antiques, and visiting and documenting historically significant locations. We strive to preserve the past for future generations and make it accessible to all.
+              </p>
+            </div>
+            <div className='container'>
+              <div className='fancyTitle'>
+                <h5>QUALITIES</h5>
+                <h2>Why choose us</h2>
+              </div>
+              <div className='flexcenter'>
+                <div className='card'>
+                  <div className='cardIcon'>
+                    <FontAwesomeIcon icon={faRadiation} />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
+      <Footer />
     </>
   )
 }

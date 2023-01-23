@@ -1,6 +1,7 @@
 import NavBar from "../../other/navbar"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import Footer from "../../other/footer"
 
 import { GraphQLClient, gql } from "graphql-request"
 
@@ -49,6 +50,7 @@ export default function Blog({posts}) {
     }, [activeTag])
 
     return (
+        <>
         <main>
             <NavBar />
             <section id="BlogContent">
@@ -86,5 +88,7 @@ export default function Blog({posts}) {
                 </div>
             </section>
         </main>
+        <Footer />
+        </>
     )
 }

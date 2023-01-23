@@ -100,6 +100,27 @@ section{
     color: var(--color-main);
 }
 
+.fancyTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+    .fancyTitle h5{
+        color: var(--color-main);
+        font-size: var(--fz-m);
+        font-weight: 700;
+        letter-spacing: 5px;
+    }
+    .fancyTitle h2{
+        font-size: 2rem;
+        margin: var(--pad-3x) 0;
+    }
+
+.container{ padding-bottom: var(--pad-5x);}
+    .container p{font-size: var(--fz-m);}
+
+.textCenter{text-align: center;}
 
 .inner{
     max-width: var(--max-width);

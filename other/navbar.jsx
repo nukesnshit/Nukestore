@@ -5,10 +5,12 @@ function ul(index) {
     const root = document.documentElement;
     const el = document.querySelectorAll("#Nav ul li")[index];
     const rect = el.getBoundingClientRect()
+    const navUnderline = document.getElementById("underline");
 
     var offset = (rect.left - (window.innerWidth / 2)) + el.offsetWidth / 2;
     offset = offset > 0 ? offset + 18 : offset + 18;
-    root.style.setProperty('--underline-translate', `translate3d(${offset}px,0,0)`);
+    navUnderline.style.transform = `translateX(${offset}px)`;
+    setTimeout(root.style.setProperty('--underline-translate', `translate3d(${offset}px,0,0)`), 500)
 }
 
 export default function NavBar() {
@@ -60,19 +62,19 @@ export default function NavBar() {
                 <div id="Nav">
                     <ul>
                         <div id="underline"></div>
-                        <li onClick={() => ul(0)} className="flexcenter"><div><Link href="/blog" >
+                        <li className="flexcenter"><div><Link href="/blog" >
                             Blog
                         </Link></div></li>
-                        <li onClick={() => ul(1)} className="flexcenter"><div><Link href="/shop" >
+                        <li className="flexcenter"><div><Link href="/shop" >
                             Shop
                         </Link></div></li>
-                        <li onClick={() => ul(2)}><Link href="/" className="flexcenter" >
+                        <li><Link href="/" className="flexcenter" >
                             <span id="LogoText">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</span>
                         </Link></li>
-                        <li onClick={() => ul(3)} className="flexcenter"><div><Link href="/#About">
+                        <li className="flexcenter"><div><Link href="/#About">
                             About
                         </Link></div></li>
-                        <li onClick={() => ul(4)} className="flexcenter"><div><Link href="/#">
+                        <li className="flexcenter"><div><Link href="/#">
                             Contacts
                         </Link></div></li>
                     </ul>

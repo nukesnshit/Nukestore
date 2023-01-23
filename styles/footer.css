@@ -1,0 +1,84 @@
+footer {
+    padding: 12%;
+    padding-top: var(--pad-3x);
+    padding-bottom: 0;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    bottom: 0;
+    width: 100vw;
+    min-height: 240px;
+    background-color: #121212;
+    border-top: solid 1px white;
+    color: white;
+  }
+  
+  footer .flex{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+  }
+  
+  #FooterLeft{
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    gap: 10px;
+  }
+    footer img{
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+        width: 100px;
+        height: 100px;
+    }
+    #FooterName{
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+  #FooterNav{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 161px;
+    gap: 10px;
+  }
+
+  footer a{
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    color: white;
+    transition: var(--transition);
+  }
+    footer a:hover{
+        color: #FFC300;
+    }
+
+#copyright {
+    padding: var(--pad-3x) 0;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    background-color: #121212;
+    }
+    #copyright a {
+        color: var(--color-main);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    #copyright p {
+        padding-top: var(--pad-1x);
+    }
+
+#Credits{
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}

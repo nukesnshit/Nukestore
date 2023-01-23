@@ -44,6 +44,10 @@ body {
   overflow-x: hidden;
 }
 
+main{
+  min-height: 100vh;
+}
+
 a{
   cursor: pointer;
   text-decoration: none;

@@ -6,6 +6,7 @@ import Swiper, { Navigation, Thumbs, Zoom } from 'swiper';
 import 'swiper/css';
 import "swiper/css/pagination";
 import { useEffect } from "react";
+import Footer from "../../other/footer";
 
 const graphcms = new GraphQLClient(
     "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cld4h09aa002801td1oul5cku/master"
@@ -39,7 +40,7 @@ export async function getStaticPaths() {
     const { products } = await graphcms.request(slugList)
     return {
         paths: products.map(product => ({ params: { slug: product.slug } })),
-        fallback: false
+        fallback: true,
     }
 }
 
@@ -113,6 +114,7 @@ export default function Blog({product}) {
     
 
     return (
+        <>
         <main>
             <NavBar />
             <section id="ItemSection">
@@ -152,5 +154,6 @@ export default function Blog({product}) {
                 </div>
             </section>
         </main>
-    )
+        <Footer />
+    </>)
 }
