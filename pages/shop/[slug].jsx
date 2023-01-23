@@ -1,6 +1,5 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
-import { useRouter } from "next/router";
 
 //swiper
 import Swiper, { Navigation, Thumbs, Zoom } from 'swiper';
@@ -41,7 +40,7 @@ export async function getStaticPaths() {
     const { products } = await graphcms.request(slugList)
     return {
         paths: products.map(product => ({ params: { slug: product.slug } })),
-        fallback: true,
+        fallback: "blocking",
     }
 }
 
@@ -72,7 +71,6 @@ function sizeCheck(){
 }
 
 export default function Blog({product}) {
-    const router = useRouter();
     const images = [product.coverPhoto.url, ...product.otherPhotos.map(photo => photo.url)]
 
     useEffect(() => {
@@ -111,10 +109,6 @@ export default function Blog({product}) {
         
         sizeCheck(); 
     }, []);
-
-    if (router.isFallback) {
-        return <main className="flexcenter"><div>Loading...</div></main>
-    }
 
     return (
         <>
