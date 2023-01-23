@@ -1,5 +1,6 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
+import { useRouter } from "next/router";
 
 //swiper
 import Swiper, { Navigation, Thumbs, Zoom } from 'swiper';
@@ -40,7 +41,7 @@ export async function getStaticPaths() {
     const { products } = await graphcms.request(slugList)
     return {
         paths: products.map(product => ({ params: { slug: product.slug } })),
-        fallback: false,
+        fallback: true,
     }
 }
 
@@ -71,9 +72,8 @@ function sizeCheck(){
 }
 
 export default function Blog({product}) {
+    const router = useRouter();
     const images = [product.coverPhoto.url, ...product.otherPhotos.map(photo => photo.url)]
-
-    console.log(images)
 
     useEffect(() => {
         
@@ -111,7 +111,10 @@ export default function Blog({product}) {
         
         sizeCheck(); 
     }, []);
-    
+
+    if (router.isFallback) {
+        return <main className="flexcenter"><div>Loading...</div></main>
+    }
 
     return (
         <>
@@ -121,9 +124,9 @@ export default function Blog({product}) {
                 <div id="imgFrame">
                     <div className="swiper imgSwiper2">
                         <div className="swiper-wrapper">
-                            {images.map((img) => { // display all images
+                            {images.map((img, i) => { // display all images
                                 return(
-                                <div className="swiper-slide">
+                                <div className="swiper-slide" key={i}>
                                     <img className="swiper-img" src={img} alt="" />
                                 </div> )
                             })}
@@ -132,9 +135,9 @@ export default function Blog({product}) {
 
                     <div className="swiper imgSwiper">
                         <div className="swiper-wrapper">
-                            {images.map((img) => { // display all images
+                            {images.map((img, i) => { // display all images
                             return(
-                                <div className="swiper-slide">
+                                <div className="swiper-slide" key={i}>
                                     <img className="swiper-img" src={img} alt="" />
                                 </div>
                             )})}

@@ -1,6 +1,7 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
 import Footer from "../../other/footer";
+import { useRouter } from "next/router";
 
 const graphcms = new GraphQLClient(
     "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cld4h09aa002801td1oul5cku/master"
@@ -53,6 +54,10 @@ export async function getStaticProps({params}) {
 
 
 export default function Blog({post}) {
+    const router = useRouter()
+    if (router.isFallback) {
+        return <main className="flexcenter"><div>Loading...</div></main>
+    }
     return (
         <>
         <main>
