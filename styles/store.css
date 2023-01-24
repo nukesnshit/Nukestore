@@ -14,6 +14,7 @@
     font-family: monospace;
     border-radius: var(--border-radius-small);
 }
+    #itemContainer h2{padding: 0 !important;}
 
 /* Item Page */
 #ItemSection{
@@ -23,8 +24,8 @@
     align-items: baseline;
     width: 100%;
     min-height: fit-content;
-    padding-left: 12%;
-    padding-right: 12%;
+    padding-left: 10%;
+    padding-right: 10%;
     padding-bottom: var(--pad-4x);
 }
 
@@ -80,23 +81,23 @@
         height: 54px !important;
         min-width: 94px;
         width: fit-content;
-        padding: 2px;
+        padding: 1px;
         opacity: 0.6;
     }
     .imgSwiper2 .swiper-slide-thumb-active {
         padding: 0px;
-        border: solid 2px rgb(0, 0, 0);
+        border: solid 1px var(--color-main);
         opacity: 1;
     }
     .imgSwiper2 .swiper-img{
         max-width: 100%;
         max-height: 100%;
     }
-
     .swiper-slide{
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: var(--pad-1x);
     }
 
 #ItemParams{
@@ -131,3 +132,53 @@
     background-color: var(--color-main);
     margin: var(--pad-1x) 0;
 }
+
+/* mobile sizing */
+
+@media only screen and (max-width: 1300px) {
+    #ItemSection{ padding-left: 20px; padding-right: 20px; }
+}
+
+@media only screen and (max-width: 1040px) {
+    #ItemSection{ flex-direction: column;}
+    #ItemParams{ width: 100%; padding-left: 0; }
+    #imgFrame{ width: 100%; flex-direction: column-reverse;}
+    .imgSwiper{
+        max-height: 300px;
+    }
+    .imgSwiper2 .swiper-slide {
+        height: auto;
+    }
+    .imgSwiper2{ 
+        margin: var(--pad-1x) 0;
+        margin-bottom: var(--pad-3x);
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .postContainer{
+        gap: var(--pad-2x);
+    }
+    .itemWrapper{
+        position: relative;
+        display: flex;
+        width: calc(50% - 10px);
+    }
+    .itemInner .imgContainer{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+        padding: 0;
+    }
+    #itemContainer .itemPrice{
+        font-size: var(--fz-m);
+        padding: 4px 8px;
+    }
+    #itemContainer h2{
+        font-size: var(--fz-m);
+        font-weight: 600;
+    }
+}
+

@@ -22,6 +22,7 @@ const gqlQuery = gql`
             datePublished
             tags
             coverPhoto {url}
+            author { name }
         }
     }
 `;
@@ -75,7 +76,7 @@ export default function Blog({posts}) {
                                             </div>
                                         </Link>
                                         <div className="textContainer">
-                                            <p className="date">{post.datePublished}</p>
+                                            <p className="dateName"><span>{post.datePublished}</span><span className="rightText">{post.author.name}</span></p>
                                             <Link href={`/blog/${post.slug}`}>
                                                 <h2>{post.title}</h2>
                                             </Link>

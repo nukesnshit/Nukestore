@@ -61,7 +61,7 @@ var thumbSwiper = null;
 
 function sizeCheck(){
     var w = window.innerWidth;
-    if(w <= 760){
+    if(w <= 1040){
         thumbSwiper.changeDirection('horizontal')
         mainSwiper.changeDirection('horizontal')
     } else {
@@ -70,10 +70,11 @@ function sizeCheck(){
     };
 }
 
-export default function Blog({product}) {
+export default function ProductPage({product}) {
     const images = [product.coverPhoto.url, ...product.otherPhotos.map(photo => photo.url)]
 
     useEffect(() => {
+        window.addEventListener('resize', function(event){sizeCheck()});
         
         /*--------------------
         SWIPER

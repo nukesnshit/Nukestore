@@ -1,35 +1,55 @@
 import Link from "next/link"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function ul(index) {
-    const root = document.documentElement;
-    const el = document.querySelectorAll("#Nav ul li")[index];
-    const rect = el.getBoundingClientRect()
-    const navUnderline = document.getElementById("underline");
-
-    var offset = (rect.left - (window.innerWidth / 2)) + el.offsetWidth / 2;
-    offset = offset > 0 ? offset + 18 : offset + 18;
-    navUnderline.style.transform = `translateX(${offset}px)`;
-    setTimeout(root.style.setProperty('--underline-translate', `translate3d(${offset}px,0,0)`), 500)
-}
 
 export default function NavBar() {
     var navBar = null;
     var navUnderline = null;
 
+    function ul(index, renewActive = false) {
+
+        const root = document.documentElement;
+        const el = document.querySelectorAll("#Nav ul li")[index];
+        const rect = el.getBoundingClientRect()
+        const navUnderline = document.getElementById("underline");
+
+        console.log(el)
+    
+        var offset = (rect.left - (window.innerWidth / 2)) + el.offsetWidth / 2;
+        offset = offset > 0 ? offset + 18 : offset + 18;
+    
+        navUnderline.style.transform = `translateX(${offset}px)`;
+
+        setTimeout(root.style.setProperty('--underline-translate', `translate3d(${offset}px,0,0)`), 500)
+    
+        if(renewActive){
+            let url = window.location.href.split("/")[3].replace("#", "");
+            let links = document.querySelectorAll("#Nav ul li div a");
+
+            links.forEach(link => { link.classList.remove("active") })
+            links.forEach(link => {
+                if (url == "") {}
+                else if (link.innerHTML.toLowerCase().includes(url.toLocaleLowerCase())) {
+                    link.classList.add("active");
+                }
+            })
+        }
+    }
+
     //get url and set active link
     useEffect(() => {
-        let url = window.location.href.split("/")[3];
+        let url = window.location.href.split("/")[3].replace("#", "");
         let links = document.querySelectorAll("#Nav ul li div a");
 
         let i = 0;
         let active = 0;
         links.forEach(link => {
             if (url == "") {active = 2;}
-            else if (link.innerHTML.toLowerCase().includes(url)) {
+            else if (link.innerHTML.toLowerCase().includes(url.toLocaleLowerCase())) {
                 link.classList.add("active");
                 active = i;
-            } i += 1;
+            } 
+            i += 1;
         })
 
         navBar = document.getElementById("NavBarWrapper");
@@ -38,7 +58,6 @@ export default function NavBar() {
 
         // get active link and set underline
         ul(active);
-
     }, [])
 
     function scrollFunction() {
@@ -68,14 +87,14 @@ export default function NavBar() {
                         <li className="flexcenter"><div><Link href="/shop" >
                             Shop
                         </Link></div></li>
-                        <li><Link href="/" className="flexcenter" >
-                            <span id="LogoText">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</span>
-                        </Link></li>
-                        <li className="flexcenter"><div><Link href="/#About">
+                        <li><div onClick={() => ul(2, true)}><Link href="/" className="flexcenter" >
+                            <img id="LogoImg" src="https://upload.wikimedia.org/wikipedia/commons/0/08/AtomBomb.png" />
+                        </Link></div></li>
+                        <li className="flexcenter"><div onClick={() => ul(3, true)}><Link href="/#About" >
                             About
                         </Link></div></li>
-                        <li className="flexcenter"><div><Link href="/#">
-                            Contacts
+                        <li className="flexcenter"><div onClick={() => ul(4, true)}><Link href="/#Contact" >
+                            Contact
                         </Link></div></li>
                     </ul>
                 </div>

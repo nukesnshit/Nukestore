@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFirePreset } from 'tsparticles-preset-fire';
 import { particlesSettings } from '../other/particles';
@@ -10,7 +10,15 @@ import Footer from '../other/footer';
 
 //icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRadiation } from '@fortawesome/free-solid-svg-icons';
+import { faHandHoldingDollar
+        , faHeart
+        , faLayerGroup
+        , faBoxOpen
+        } from '@fortawesome/free-solid-svg-icons';
+
+//animate on scroll library
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 var currentTime = 0
 export function calcAosTime(index, delay = 50, reset = false){
@@ -29,8 +37,10 @@ export default function Home() {
   }, []);
 
   const particlesLoaded = useCallback(async container => {
-    await console.log(container);
+    console.log(container);
   }, []);
+
+  useEffect(() => { AOS.init() }, [])
 
   return (
     <>
@@ -58,26 +68,56 @@ export default function Home() {
         </section>
         <section className='background'>
           <div className='inner'>
-            <div className='container'>
+            <div className='container' id="About">
               <div className='fancyTitle'>
-                <h5>NUKESNSHIT.COM</h5>
-                <h2>About us</h2>
+                <h5 data-aos="fade-down">NUKESNSHIT.COM</h5>
+                <h2 data-aos="fade-down">About us</h2>
               </div>
-              <p className='textContent textCenter'>
-                We are a heritage preservation company, dedicated to the preservation and restoration of historical artifacts. Our services include expert restoration work, the buying and selling of antiques, and visiting and documenting historically significant locations. We strive to preserve the past for future generations and make it accessible to all.
+              <p className='textContent textCenter' data-aos="fade-down">
+                We are a heritage preservation company, dedicated to the preservation and restoration of historical artifacts. Our services include expert restoration work, the buying and selling of antiques, visiting and documenting historically significant locations. We strive to preserve the past for future generations and make it accessible to all.
               </p>
             </div>
             <div className='container'>
               <div className='fancyTitle'>
-                <h5>QUALITIES</h5>
-                <h2>Why choose us</h2>
+                <h5 data-aos="fade-down">QUALITIES</h5>
+                <h2 data-aos="fade-down">Why choose us</h2>
               </div>
-              <div className='flexcenter'>
-                <div className='card'>
-                  <div className='cardIcon'>
-                    <FontAwesomeIcon icon={faRadiation} />
+              <div className='flexcenter' id="cardContainer">
+                <div className='card' data-aos="fade-down" data-aos-delay={calcAosTime(0, 50, true)}>
+                  <div className='cardIcon flexcenter'>
+                    <FontAwesomeIcon icon={faLayerGroup} />
                   </div>
+                  <h5>We innovate</h5>
+                  <p>We are constantly exploring and experimenting with various advanced restoration methods and testing cutting-edge technologies to improve the effectiveness and efficiency of our preservation efforts.</p> 
                 </div>
+                <div className='card' data-aos="fade-down" data-aos-delay={calcAosTime(1)}>
+                  <div className='cardIcon flexcenter'>
+                    <FontAwesomeIcon icon={faBoxOpen} />
+                  </div>
+                  <h5>We guarantee quality</h5>
+                  <p>All of our products for sale undergo a thorough inspection process to ensure they are free of defects and of the highest quality. We stand behind our products and offer a comprehensive guarantee to give our customers peace of mind in their purchase. </p> 
+                </div>
+                <div className='card' data-aos="fade-down" data-aos-delay={calcAosTime(2)}>
+                  <div className='cardIcon flexcenter'>
+                    <FontAwesomeIcon icon={faHeart} />
+                  </div>
+                  <h5>We listen to you</h5>
+                  <p>We value your input and actively seek out your advice and feedback to guide us in our continuous improvement efforts. Your suggestions and observations play a vital role in helping us evolve and become better in what we do.</p> 
+                </div>
+                <div className='card' data-aos="fade-down" data-aos-delay={calcAosTime(3)}>
+                  <div className='cardIcon flexcenter'>
+                    <FontAwesomeIcon icon={faHandHoldingDollar} />
+                  </div>
+                  <h5> We reinvest </h5>
+                  <p> A significant portion of our profits are strategically reinvested back into the company to enhance the quality of our products and to optimize the performance and functionality of our website. </p> 
+                </div>
+              </div>
+            </div>
+            <div className='container' id='Contact'>
+              <div className='fancyTitle'>
+                <h5 data-aos="fade-down">CONTACT</h5>
+                <h2 data-aos="fade-down">Get in touch</h2>
+
               </div>
             </div>
           </div>

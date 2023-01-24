@@ -36,8 +36,6 @@
         display: none;
     }
 
-    #LogoText{transition: var(--transition);}
-
     #NavBar a{
         text-decoration: none;
         color: var(--color-slate);
@@ -45,6 +43,14 @@
         padding: 10px;
     }
         #NavBar a.active{color: var(--color-main);}
+
+    #LogoImg{
+        position: relative;
+        height: 32px;
+        min-width: 32px;
+        bottom: var(--pad-1x);
+        filter: invert(100%);
+    }
 
     #NavBarWrapper ul{
         display: flex;
@@ -68,4 +74,8 @@
     pointer-events: none;
     transition: all .2s ease;
     transform: var(--underline-translate);
+}
+
+@media only screen and (max-width: 680px) {
+
 }

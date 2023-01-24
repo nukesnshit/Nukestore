@@ -100,6 +100,9 @@ section{
     color: var(--color-main);
 }
 
+.container{ padding-bottom: 120px;}
+    .container p{font-size: var(--fz-m);}
+
 .fancyTitle{
     display: flex;
     flex-direction: column;
@@ -117,12 +120,58 @@ section{
         margin: var(--pad-3x) 0;
     }
 
-.container{ padding-bottom: var(--pad-5x);}
-    .container p{font-size: var(--fz-m);}
+.card{
+    margin: var(--pad-1x);
+    padding: var(--pad-2x);
+    padding-bottom: var(--pad-3x);
+    align-self: stretch;
+    background-color: #121212;
+    border-radius: var(--border-radius);
+}
+    .cardIcon{
+        height: 50px;
+        width: 50px;
+        border-radius: var(--border-radius);
+        background-color: var(--color-main);
+        color: var(--color-black);
+        padding: var(--pad-1x);
+    }
+    .card h5{
+        font-size: var(--fz-md);
+        font-weight: 700;
+        margin: var(--pad-1x) 0;
+    }
 
 .textCenter{text-align: center;}
 
 .inner{
     max-width: var(--max-width);
     padding: 100px 0;
+}
+
+@media only screen and (max-width: 1000px) {
+    #cardContainer{flex-direction: column;}
+    #Hero{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #HeroContainer{
+        position: relative;
+        left: 0;
+        top: -40px;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .inner{
+        padding-bottom: var(--pad-2x);
+    }
+    .heroText{
+        font-size: calc(var(--fz-title) - 20px);
+        display: flex;
+        gap: 10px;
+    }
+
 }
