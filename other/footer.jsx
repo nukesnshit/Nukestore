@@ -13,8 +13,8 @@ export default function Footer () {
                     <Link className="NavBtn" href="/">Home</Link>
                     <Link className="NavBtn" href="/blog">Blog</Link>
                     <Link className="NavBtn" href="/shop">Shop</Link>
-                    <Link className="NavBtn" href="/produktai">About</Link>
-                    <Link className="NavBtn" href="/contact">Contact</Link>
+                    <Link className="NavBtn" href="/#About">About</Link>
+                    <Link className="NavBtn" href="/#Contact">Contact</Link>
                 </div>
             </div>
             <div id="copyright">

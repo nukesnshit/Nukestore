@@ -149,6 +149,33 @@ section{
     padding: 100px 0;
 }
 
+#Contact{
+    flex-direction: column;
+    padding-bottom: 0;
+}
+    #Contact p{
+        width: 70%;
+    }
+    #Contact button{
+        margin: var(--pad-4x) 0;
+        padding: var(--pad-2x) var(--pad-4x);
+        background-color: transparent;
+        border: solid 1px var(--color-main);
+        color: var(--color-main);
+        font-size: var(--fz-s);
+        cursor: pointer;
+        font-weight: 700;
+        letter-spacing: 2px;
+        border-radius: var(--border-radius-small);
+        transition: var(--transition);
+    }
+    #Contact button:hover{
+        background-color: var(--color-main);
+        color: var(--color-black);
+        box-shadow: 0 0 10px 0 var(--color-main);
+    }
+
+
 @media only screen and (max-width: 1000px) {
     #cardContainer{flex-direction: column;}
     #Hero{
@@ -172,6 +199,9 @@ section{
         font-size: calc(var(--fz-title) - 20px);
         display: flex;
         gap: 10px;
+    }
+    #Contact p{
+        width: 100%;
     }
 
 }

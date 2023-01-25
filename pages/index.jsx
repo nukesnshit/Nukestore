@@ -58,10 +58,10 @@ export default function Home() {
               <div className="heroText">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</div>
             </div>
             <div id='HeroNav'>
-              <Link className="aeffect fixBug" href='blog'>BLOG</Link>
-              <Link className="aeffect fixBug" href='shop'>SHOP</Link>
-              <Link className="aeffect fixBug" href='blog'>CONTACT</Link>
-              <Link className="aeffect fixBug" href='#About'>ABOUT</Link>
+              <Link className="aeffect fixBug" href='/blog'>BLOG</Link>
+              <Link className="aeffect fixBug" href='/shop'>SHOP</Link>
+              <Link className="aeffect fixBug" href='/#About'>ABOUT</Link>
+              <Link className="aeffect fixBug" href='/#Contact'>CONTACT</Link>
             </div>
           </div>
         <Particles id="tsparticles" options={particlesSettings} init={particlesInit} loaded={particlesLoaded} />
@@ -71,7 +71,7 @@ export default function Home() {
             <div className='container' id="About">
               <div className='fancyTitle'>
                 <h5 data-aos="fade-down">NUKESNSHIT.COM</h5>
-                <h2 data-aos="fade-down">About us</h2>
+                <h2 data-aos="fade-down" id="AboutCheck">About us</h2>
               </div>
               <p className='textContent textCenter' data-aos="fade-down">
                 We are a heritage preservation company, dedicated to the preservation and restoration of historical artifacts. Our services include expert restoration work, the buying and selling of antiques, visiting and documenting historically significant locations. We strive to preserve the past for future generations and make it accessible to all.
@@ -113,12 +113,13 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className='container' id='Contact'>
+            <div className='container flexcenter' id='Contact'>
               <div className='fancyTitle'>
-                <h5 data-aos="fade-down">CONTACT</h5>
+                <h5 data-aos="fade-down" id="ContactCheck">CONTACT</h5>
                 <h2 data-aos="fade-down">Get in touch</h2>
-
               </div>
+              <p className="centerText" data-aos="fade-down" style={{fontSize: "var(--fz-md)"}}>My inbox is always open, whether you have a question, offer or just want to say hi, I’ll try my best to get back to you!</p>
+              <a href='mailto:info@nukesnshit.com' data-aos="fade-down"><button>Contact</button></a>
             </div>
           </div>
         </section>

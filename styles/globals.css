@@ -130,7 +130,12 @@ a{
         opacity: 0.8;
         padding: var(--pad-1x);
       }
-      .postContainer h2{color: var(--color-slate); transition: all .5s ease; padding: 0 var(--pad-1x);}
+      .postContainer h2{
+        color: var(--color-slate);
+         transition: all .5s ease;
+         padding: 0 var(--pad-1x);
+         text-align: center;
+        }
       .itemWrapper:hover h2 {color: var(--color-main)}
 
 .centerText{text-align: center;}
