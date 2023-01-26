@@ -28,8 +28,6 @@ export default function NavBar() {
             else {url = currentLink}
             let links = document.querySelectorAll("#Nav ul li div a");
 
-            console.log(url)
-
             let i = 0;
             let active = 0;
             links.forEach(link => { link.classList.remove("active") })

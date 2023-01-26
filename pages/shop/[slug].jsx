@@ -146,10 +146,10 @@ export default function ProductPage({product}) {
                     <div className="line"></div>
                     <div id="ItemDescription" dangerouslySetInnerHTML={{__html: product.content.html}}></div>
                     <div id="ItemButtons">
-                        <a href={`mailto:info@nukesnshit.com?subject=${product.title} Shipping Estimate&body=Hey! I'm intrested in buying the ${product.title}.%0D%0ACountry: %0D%0AI want my order to be trackable (Costs extra): %0D%0A%0D%0AThanks.`}>
+                        <a href={`mailto:info@nukesnshit.com?subject=${product.title} Shipping Estimate&body=Hey! I'm interested in buying the ${product.title}.%0D%0A%0D%0ACountry: ${product.quantity > 1 ? "%0D%0AQuantity:":""} %0D%0A%0D%0AThanks.`}>
                             <button id="QuouteBtn">Get a quote for shipping</button>
                         </a>
-                        <a href={`mailto:info@nukesnshit.com?subject=Intrest in ${product.title}&body=Hey! I'm intrested in buying the ${product.title} Can you explain me the steps of buying it?.
+                        <a href={`mailto:info@nukesnshit.com?subject=Intrest in ${product.title}&body=Hey! I'm interested in buying the ${product.title} Can you explain me the steps of buying it?.
                         `}>
                             <button id="ContactBtn">Contact Seller</button>
                         </a>
@@ -157,6 +157,5 @@ export default function ProductPage({product}) {
                 </div>
             </section>
         </main>
-        <Footer />
     </>)
 }

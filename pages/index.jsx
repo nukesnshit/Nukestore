@@ -44,12 +44,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Nukes n' shit</title>
-        <meta name="description" content="A place where you can buy collectable war items and other cool stuff" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main>
         <NavBar />
         <section id="Hero">
@@ -74,7 +68,7 @@ export default function Home() {
                 <h2 data-aos="fade-down" id="AboutCheck">About us</h2>
               </div>
               <p className='textContent textCenter' data-aos="fade-down">
-                We are a heritage preservation company, dedicated to the preservation and restoration of historical artifacts. Our services include expert restoration work, the buying and selling of antiques, visiting and documenting historically significant locations. We strive to preserve the past for future generations and make it accessible to all.
+                We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques, and documentation of historically significant locations. Our goal is to ensure that the past is preserved for future generations and made accessible to all.
               </p>
             </div>
             <div className='container'>
@@ -124,7 +118,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }

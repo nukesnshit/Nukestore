@@ -89,7 +89,6 @@ export default function Blog({products}) {
                 </div>
             </section>
         </main>
-        <Footer />
         </>
     )
 }

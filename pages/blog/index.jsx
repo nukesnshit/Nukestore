@@ -89,7 +89,6 @@ export default function Blog({posts}) {
                 </div>
             </section>
         </main>
-        <Footer />
         </>
     )
 }
