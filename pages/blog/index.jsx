@@ -1,7 +1,6 @@
 import NavBar from "../../other/navbar"
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import Footer from "../../other/footer"
 
 import { GraphQLClient, gql } from "graphql-request"
 
@@ -41,7 +40,7 @@ export default function Blog({posts}) {
     const [activeTag, setActiveTag] = useState("All")
     const [sortedPosts, setPosts] = useState([])
 
-    const tags = ["All", "Bunkers", "Abandoned", "Industrial"]
+    const tags = ["All", "Bunkers", "Abandoned", "Industrial", "Restoration"]
 
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])

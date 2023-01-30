@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../WebPortfolio/website"
+		},
+		{
+			"path": "../../server"
+		},
+		{
+			"path": "../../../Armilla/react/client"
+		}
+	],
+	"settings": {}
+}

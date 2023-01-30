@@ -9,8 +9,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { calcAosTime } from "..";
 
-import Footer from "../../other/footer";
-
 const graphcms = new GraphQLClient(
     "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cld4h09aa002801td1oul5cku/master"
 );

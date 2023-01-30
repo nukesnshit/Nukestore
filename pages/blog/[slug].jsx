@@ -1,6 +1,5 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
-import Footer from "../../other/footer";
 
 const graphcms = new GraphQLClient(
     "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cld4h09aa002801td1oul5cku/master"
@@ -58,7 +57,7 @@ export default function Blog({post}) {
         <main>
             <NavBar />
             <section id="BlogContentMain">
-                <div className="inner">
+                <div className="inner flexcenter">
                     {post !== null ? (
                         <div>
                             <div className="title"> {post.title} </div>
@@ -68,6 +67,15 @@ export default function Blog({post}) {
                             <div id="BlogHtml" dangerouslySetInnerHTML={{__html: post.content.html}} ></div>
                         </div>
                     ) : ( <div> Loading... </div> )}
+                </div>
+                <div className="author">
+                    <div className="avatar">
+                        <img src={post.author.avatar.url}></img>
+                    </div>
+                    <div>
+                        <h5>The Author</h5>
+                        <h3 className="authorName">{post.author.name}</h3>
+                    </div>
                 </div>
             </section>
         </main>
