@@ -2,7 +2,7 @@
   "name": "nukesnshit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nukesnshit.github.io/Nukestore/",
+  "homepage": "https://www.nukesnshit.com/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
