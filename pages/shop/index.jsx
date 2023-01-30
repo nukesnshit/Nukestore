@@ -10,7 +10,7 @@ import 'aos/dist/aos.css';
 import { calcAosTime } from "..";
 
 const graphcms = new GraphQLClient(
-    "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cld4h09aa002801td1oul5cku/master"
+    "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
 );
 
 const gqlQuery = gql`
