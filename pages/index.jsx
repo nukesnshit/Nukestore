@@ -23,7 +23,7 @@ import 'aos/dist/aos.css';
 var currentTime = 0
 export function calcAosTime(index, delay = 50, reset = false){
     if(reset){currentTime = 0; return 0}
-    currentTime += index * delay
+    currentTime = index * delay
     return currentTime
 }
 
@@ -113,7 +113,7 @@ export default function Home() {
                 <h2 data-aos="fade-down">Get in touch</h2>
               </div>
               <p className="centerText" data-aos="fade-down" style={{fontSize: "var(--fz-md)"}}>My inbox is always open, whether you have a question, offer or just want to say hi, I’ll try my best to get back to you!</p>
-              <a href='mailto:info@nukesnshit.com' data-aos="fade-down"><button>Contact</button></a>
+              <div style={{margin: "var(--pad-4x) 0"}} data-aos="fade-down"><a href='mailto:info@nukesnshit.com'><button>Contact</button></a></div>
             </div>
           </div>
         </section>

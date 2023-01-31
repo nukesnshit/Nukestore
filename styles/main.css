@@ -159,7 +159,6 @@ section{
         width: 70%;
     }
     #Contact button{
-        margin: var(--pad-4x) 0;
         padding: var(--pad-2x) var(--pad-4x);
         background-color: transparent;
         border: solid 1px var(--color-main);
@@ -176,7 +175,6 @@ section{
         color: var(--color-black);
         box-shadow: 0 0 10px 0 var(--color-main);
     }
-
 
 @media only screen and (max-width: 1000px) {
     #cardContainer{flex-direction: column;}
@@ -205,5 +203,4 @@ section{
     #Contact p{
         width: 100%;
     }
-
 }

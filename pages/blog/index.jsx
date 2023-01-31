@@ -45,8 +45,20 @@ export default function Blog({posts}) {
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
     useEffect(() => {
+        const items = document.getElementsByClassName("itemWrapper")
+        for (let i = 0; i < items.length; i++) { items[i].classList.remove("itemAnim") } 
+
         if(activeTag === "All"){setPosts(posts)} 
         else { setPosts(posts.filter(post => post.tags.includes(activeTag))) }
+
+        // should replace this with a better solution, maybe a ref
+        var checkExist = setInterval(function() {
+            const items = document.getElementsByClassName("itemWrapper")
+            if (items.length > 0) {
+                for (let i = 0; i < items.length; i++) { items[i].classList.add("itemAnim") } 
+                clearInterval(checkExist);
+            }
+        }, 50);
     }, [activeTag])
 
     return (
@@ -67,7 +79,7 @@ export default function Blog({posts}) {
                     <div className="postContainer">
                         {  typeof sortedPosts !== undefined ? sortedPosts.map((post, i) => {
                             return (
-                                <div key={i} className="itemWrapper" data-aos="fade-down" data-aos-delay={calcAosTime(i, 50, !i)}>
+                                <div key={i} className="itemWrapper" style={{animationDelay: `${calcAosTime(i, 0.5, !i) * 0.1}s`}}>
                                     <div className="itemInner">
                                         <Link href={`/blog/${post.slug}`}>
                                             <div className="imgContainer">
