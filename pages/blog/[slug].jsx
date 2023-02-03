@@ -72,7 +72,7 @@ export default function Blog({post}) {
                     <div className="avatar">
                         <img src={post.author.avatar.url}></img>
                     </div>
-                    <div>
+                    <div className="authorData">
                         <h5>The Author</h5>
                         <h3 className="authorName">{post.author.name}</h3>
                     </div>

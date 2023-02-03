@@ -55,6 +55,7 @@ iframe{
     .author .avatar{
         width: 100px;
         height: 100px;
+        min-width: 100px;
         border-radius: 50%;
         overflow: hidden;
         margin-right: var(--pad-2x);
@@ -66,8 +67,19 @@ iframe{
         padding: 0 !important;
     }
 
+    .authorData{
+        width: fit-content;
+    }
+
     .author h5{
         font-size: var(--fz-s);
         font-weight: 700;
         color: var(--color-main);
     }
+
+@media only screen and (max-width: 420px) {
+    .authorData{
+        width: 100%;
+        text-align: center;
+    }
+}

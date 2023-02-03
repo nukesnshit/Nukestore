@@ -13,9 +13,11 @@ const graphcms = new GraphQLClient(
     "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
 );
 
+//This is the worst possible way to do this. Changing it soon.
+
 const gqlQuery = gql`
     {
-        products{
+        products(first:99){
             title
             slug
           	price
