@@ -17,7 +17,7 @@ const graphcms = new GraphQLClient(
 
 const gqlQuery = gql`
     {
-        products(first:99){
+        products(first:90){
             title
             slug
           	price
