@@ -1,6 +1,8 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
 
+import Meta from "../../other/meta";
+
 const graphcms = new GraphQLClient(
     "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
 );
@@ -17,7 +19,7 @@ const gqlQuery = gql`
                 name 
                 avatar {url}
             }
-            content {html}
+            content {html, markdown}
         }
     }
 `;
@@ -52,8 +54,16 @@ export async function getStaticProps({params}) {
 
 
 export default function Blog({post}) {
+
+    Meta.defaultProps = {
+        title: "Nukes n' shit | Blog",
+        keywords: [post.title, ...post.tags],
+        description: post.markdown,
+    }    
+
     return (
         <>
+        <Meta />
         <main>
             <NavBar />
             <section id="BlogContentMain">

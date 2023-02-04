@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap --config sitemap.js",
     "start": "next start",
     "lint": "next lint"
   },
@@ -27,5 +28,8 @@
     "swiper": "^8.4.6",
     "tsparticles": "^2.7.1",
     "tsparticles-preset-fire": "^2.7.1"
+  },
+  "devDependencies": {
+    "next-sitemap": "^3.1.49"
   }
 }

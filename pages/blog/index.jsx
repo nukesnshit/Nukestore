@@ -9,6 +9,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { calcAosTime } from "..";
 
+import Meta from "../../other/meta";
+
 const graphcms = new GraphQLClient(
     "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
 );
@@ -37,6 +39,13 @@ export async function getStaticProps(){
 }
 
 export default function Blog({posts}) {
+    
+    Meta.defaultProps = {
+        title: "Nukes n' shit | Blog",
+        keywords: ['bunker', 'hideout', 'world war', 'world war 2', 'ww', 'ww2', 'restoration', 'abandoned', 'exploration', 'bunker exploration'],
+        description: "Documentation of historically significant locations.",
+    }    
+
     const [activeTag, setActiveTag] = useState("All")
     const [sortedPosts, setPosts] = useState([])
 
@@ -63,6 +72,7 @@ export default function Blog({posts}) {
 
     return (
         <>
+        <Meta />
         <main>
             <NavBar />
             <section id="BlogContent">

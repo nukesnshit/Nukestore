@@ -9,6 +9,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { calcAosTime } from "..";
 
+import Meta from "../../other/meta";
+
 const graphcms = new GraphQLClient(
     "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
 );
@@ -38,6 +40,13 @@ export async function getStaticProps(){
 }
 
 export default function Blog({products}) {
+
+    Meta.defaultProps = {
+        title: "Nukes n' shit | Store",
+        keywords: ['dosimeter', 'dosimetric equipment', 'gasmask', 'WW2', 'world war', 'restoration', 'war', 'radioactive', 'uranium', 'historical artifacts', 'antiques'],
+        description: "We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques.",
+    }
+    
     const [activeTag, setActiveTag] = useState("All")
     const [sortedItems, setSortedItems] = useState([])
 
@@ -65,6 +74,7 @@ export default function Blog({products}) {
 
     return (
         <>
+        <Meta  />
         <main>
             <NavBar />
             <section id="BlogContent">

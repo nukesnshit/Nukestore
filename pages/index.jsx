@@ -6,7 +6,8 @@ import { particlesSettings } from '../other/particles';
 
 import Link from 'next/link';
 import NavBar from '../other/navbar';
-import Footer from '../other/footer';
+
+import Meta from '../other/meta'
 
 //icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,6 +29,13 @@ export function calcAosTime(index, delay = 50, reset = false){
 }
 
 export default function Home() {
+  Meta.defaultProps = {
+    title: "Nukes n' shit",
+    keywords: ['dosimeter', 'gasmask', 'bunker', 'abandoned', 'restoration', 'nuclear', 'abandoned'],
+    description:
+      "We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques, and documentation of historically significant locations. Our goal is to ensure that the past is preserved for future generations and made accessible to all.",
+  };
+
   const particlesInit = useCallback(async engine => {
     console.log(engine);
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
@@ -44,6 +52,7 @@ export default function Home() {
 
   return (
     <>
+      <Meta />
       <main>
         <NavBar />
         <section id="Hero">

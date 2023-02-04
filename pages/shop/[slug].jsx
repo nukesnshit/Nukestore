@@ -7,6 +7,8 @@ import 'swiper/css';
 import "swiper/css/pagination";
 import { useEffect } from "react";
 
+import Meta from "../../other/meta";
+
 const graphcms = new GraphQLClient(
     "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
 );
@@ -19,7 +21,7 @@ const gqlQuery = gql`
             quantity
             coverPhoto {url}
             otherPhotos {url}
-            content {html}
+            content {html, markdown}
             categories
             slug
 
@@ -70,6 +72,12 @@ function sizeCheck(){
 }
 
 export default function ProductPage({product}) {
+    Meta.defaultProps = {
+        title: "Nukes n' shit | Store",
+        keywords: [product.title, ...product.categories],
+        description: product.markdown,
+    }    
+
     const images = [product.coverPhoto.url, ...product.otherPhotos.map(photo => photo.url)]
 
     useEffect(() => {
@@ -112,6 +120,7 @@ export default function ProductPage({product}) {
 
     return (
         <>
+        <Meta/>
         <main>
             <NavBar />
             <section id="ItemSection">
