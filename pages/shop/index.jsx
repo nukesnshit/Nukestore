@@ -39,15 +39,19 @@ export async function getStaticProps(){
     }
 }
 
-export default function Blog({products}) {
+const productsPerPage = 8;
 
+export default function Blog({products}) {
     Meta.defaultProps = {
         title: "Nukes n' shit | Store",
-        keywords: ['dosimeter', 'dosimetric equipment', 'gasmask', 'WW2', 'world war', 'restoration', 'war', 'radioactive', 'uranium', 'historical artifacts', 'antiques'],
+        keywords: '',
         description: "We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques.",
+        topic: "Antiques",
+        type: "shop"
     }
     
     const [activeTag, setActiveTag] = useState("All")
+    const [activePage, setActivePage] = useState(1)
     const [sortedItems, setSortedItems] = useState([])
 
     const tags = ["All", "Dosimetric equipment", "Masks", "Radioactive stuff", "Other"]
@@ -55,6 +59,7 @@ export default function Blog({products}) {
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
     useEffect(() => {
+
         const items = document.getElementsByClassName("itemWrapper")
         for (let i = 0; i < items.length; i++) { items[i].classList.remove("itemAnim") } 
 
@@ -70,7 +75,11 @@ export default function Blog({products}) {
             }
          }, 50);
     
-    }, [activeTag])
+    }, [activeTag, activePage])
+
+    useEffect(() => {
+        setActivePage(1)
+    }, [sortedItems])
 
     return (
         <>
@@ -91,6 +100,7 @@ export default function Blog({products}) {
                     <div className="postContainer" id="itemContainer">
                         {  typeof sortedItems !== undefined ? sortedItems.map((item, i) => {
                             return (
+                                i < productsPerPage * activePage && i >= productsPerPage * (activePage - 1) ? (
                                 <div key={i} className="itemWrapper" style={{animationDelay: `${calcAosTime(i, 0.5, !i) * 0.1}s`}}>
                                     <div className="itemInner">
                                         <Link href={`/shop/${item.slug}`}>
@@ -106,9 +116,19 @@ export default function Blog({products}) {
                                         </div>
                                     </div>
                                 </div>
+                                ) : null
                             )
                         }): <p>No posts found</p>}
                     </div>
+                    {sortedItems.length > 0 ? (
+                        <div id="PageNumeration">
+                            {activePage == 1 ? <div className="invisButton" />: null}
+                            {activePage > 1 ? <div className="pageButton" onClick={() => setActivePage(activePage - 1)}>{activePage-1}</div> : null}
+                            <div className="pageButton active">{activePage}</div>
+                            {sortedItems.length > productsPerPage * activePage ? (<div className="pageButton" onClick={() => setActivePage(activePage + 1)}>{activePage+1}</div>)
+                            : <div className="invisButton"/>}
+                        </div>
+                    ) : null}
                 </div>
             </section>
         </main>

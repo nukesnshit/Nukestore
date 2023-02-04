@@ -120,10 +120,30 @@
         margin-bottom: var(--pad-1x);
     }
     #ItemDescription{ font-size: var(--fz-m); }
-    #ItemDescription ul{ padding-left: var(--pad-2x);}
-    #ItemDescription p{
-        padding: var(--pad-1x) 0;
-    }
+        #ItemDescription ul{ padding-left: var(--pad-2x);}
+        #ItemDescription p{padding: var(--pad-1x) 0;}
+        #ItemDescription a {
+            display: inline-block;
+            position: relative;
+            color: var(--color-main);
+          }
+            #ItemDescription a::after {
+              content: '';
+              position: absolute;
+              width: 100%;
+              transform: scaleX(0);
+              height: 2px;
+              bottom: 0;
+              left: 0;
+              background-color: var(--color-main);
+              transform-origin: bottom right;
+              transition: transform 0.25s ease-out;
+            }
+            #ItemDescription a:hover::after {
+              transform: scaleX(1);
+              transform-origin: bottom left;
+            }
+
 
 
 .line{

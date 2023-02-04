@@ -53,7 +53,7 @@ export async function getStaticProps({params}) {
         props: {
             product,
         },
-        revalidate: 60,
+        revalidate: 300,
     }
 }
 
@@ -74,8 +74,10 @@ function sizeCheck(){
 export default function ProductPage({product}) {
     Meta.defaultProps = {
         title: "Nukes n' shit | Store",
-        keywords: [product.title, ...product.categories],
-        description: product.markdown,
+        keywords: `${product.title}, ${product.categories.toString()}`,
+        description: `Price: ${product.price}€ ${product.content.markdown}`,
+        topic: product.title,
+        type: "shop"
     }    
 
     const images = [product.coverPhoto.url, ...product.otherPhotos.map(photo => photo.url)]

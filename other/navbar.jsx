@@ -47,7 +47,7 @@ export default function NavBar() {
     useEffect(() => {
         currentLink = window.location.href.split("/")[3].replace("#", "");
         let links = document.querySelectorAll("#Nav ul li div a");
-
+    
         let i = 0;
         let active = 0;
         links.forEach(link => {
@@ -58,11 +58,11 @@ export default function NavBar() {
             } 
             i += 1;
         })
-
+    
         navBar = document.getElementById("NavBarWrapper");
         navUnderline = document.getElementById("underline");
         window.onscroll = function() {scrollFunction()};
-
+    
         // get active link and set underline
         ul(active);
     }, [])

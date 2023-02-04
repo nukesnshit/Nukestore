@@ -48,7 +48,7 @@ export async function getStaticProps({params}) {
         props: {
             post,
         },
-        revalidate: 60,
+        revalidate: 300,
     }
 }
 
@@ -57,8 +57,10 @@ export default function Blog({post}) {
 
     Meta.defaultProps = {
         title: "Nukes n' shit | Blog",
-        keywords: [post.title, ...post.tags],
-        description: post.markdown,
+        keywords: `${post.title}, ${post.tags.toString()}`,
+        description: post.content.markdown,
+        topic: post.title,
+        type: "blog"
     }    
 
     return (

@@ -42,8 +42,10 @@ export default function Blog({posts}) {
     
     Meta.defaultProps = {
         title: "Nukes n' shit | Blog",
-        keywords: ['bunker', 'hideout', 'world war', 'world war 2', 'ww', 'ww2', 'restoration', 'abandoned', 'exploration', 'bunker exploration'],
+        keywords: ["Bunker", 'USSR', 'abandoned', 'urbex', 'fallout shelter', 'restoration', 'military', 'urban exploration', 'nuclear shelter', 'nuclear', 'atomic bomb', 'secret bunker', 'soviet bunker', 'soviet military'],
         description: "Documentation of historically significant locations.",
+        topic: "Exploration",
+        type: "blog"
     }    
 
     const [activeTag, setActiveTag] = useState("All")

@@ -148,7 +148,8 @@ section{
 
 .inner{
     max-width: var(--max-width);
-    padding: 100px 0;
+    padding: var(--pad-5x) 0;
+    padding-top: 100px;
 }
 
 #Contact{
@@ -176,6 +177,43 @@ section{
         box-shadow: 0 0 10px 0 var(--color-main);
     }
 
+#PageNumeration{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin-top: var(--pad-1x);
+    margin-bottom: var(--pad-5x);
+}
+    #PageNumeration div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: solid 1px var(--color-black);
+        border-radius: 50%;
+        background: var(--color-black);
+        width: 32px;
+        height: 32px;
+        font-size: var(--fz-s);
+        transition: all 0.2s ease;
+    }
+    #PageNumeration div.active{
+        border: solid 1px var(--color-main); 
+        color: var(--color-main); 
+        font-size: var(--fz-md);
+        width: 50px;
+        height: 50px;
+    }
+    #PageNumeration .invisButton{
+        
+        pointer-events: none;
+        opacity: 0;
+        width: 32px;
+        height: 32px;
+    }
+    #PageNumeration div:hover{border: solid 1px var(--color-main); }
+
 @media only screen and (max-width: 1000px) {
     #cardContainer{flex-direction: column;}
     #Hero{
@@ -189,18 +227,16 @@ section{
         top: -40px;
         height: auto;
     }
+    #PageNumeration{margin-bottom: var(--pad-2x);}
 }
 
 @media only screen and (max-width: 500px) {
-    .inner{
-        padding-bottom: var(--pad-2x);
+    .inner{padding-bottom: var(--pad-2x);
     }
     .heroText{
         font-size: calc(var(--fz-title) - 20px);
         display: flex;
         gap: 10px;
     }
-    #Contact p{
-        width: 100%;
-    }
+    #Contact p{width: 100%;}
 }
