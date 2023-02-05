@@ -24,7 +24,11 @@ const gqlQuery = gql`
             slug
           	price
             categories
-          	coverPhoto{url}
+          	coverPhoto{url(
+                transformation: {
+                    image: { resize: { width: 600, height: 600, fit: clip } }
+                }
+            )}
         }
     }
 `;
@@ -39,7 +43,7 @@ export async function getStaticProps(){
     }
 }
 
-const productsPerPage = 8;
+const productsPerPage = 99;
 
 export default function Blog({products}) {
     Meta.defaultProps = {
@@ -59,7 +63,6 @@ export default function Blog({products}) {
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
     useEffect(() => {
-
         const items = document.getElementsByClassName("itemWrapper")
         for (let i = 0; i < items.length; i++) { items[i].classList.remove("itemAnim") } 
 
@@ -120,6 +123,16 @@ export default function Blog({products}) {
                             )
                         }): <p>No posts found</p>}
                     </div>
+                    
+
+                </div>
+            </section>
+        </main>
+        </>
+    )
+}
+
+/*
                     {sortedItems.length > 0 ? (
                         <div id="PageNumeration">
                             {activePage == 1 ? <div className="invisButton" />: null}
@@ -129,9 +142,4 @@ export default function Blog({products}) {
                             : <div className="invisButton"/>}
                         </div>
                     ) : null}
-                </div>
-            </section>
-        </main>
-        </>
-    )
-}
+*/

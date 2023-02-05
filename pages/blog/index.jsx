@@ -22,7 +22,11 @@ const gqlQuery = gql`
             slug
             datePublished
             tags
-            coverPhoto {url}
+            coverPhoto {url(
+                transformation: {
+                    image: { resize: { width: 600, height: 600, fit: clip } }
+                }
+            )}
             author { name }
         }
     }
