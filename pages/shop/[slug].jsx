@@ -2,7 +2,7 @@ import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
 
 //swiper
-import Swiper, { Navigation, Thumbs, Zoom } from 'swiper';
+import Swiper, { Navigation, Thumbs, Zoom, Mousewheel } from 'swiper';
 import 'swiper/css';
 import "swiper/css/pagination";
 import { useEffect } from "react";
@@ -57,25 +57,11 @@ export async function getStaticProps({params}) {
     }
 }
 
-var mainSwiper = null;
-var thumbSwiper = null;
-
-function sizeCheck(){
-    var w = window.innerWidth;
-    if(w <= 1040){
-        thumbSwiper.changeDirection('horizontal')
-        mainSwiper.changeDirection('horizontal')
-    } else {
-        thumbSwiper.changeDirection('vertical')
-        mainSwiper.changeDirection('vertical')
-    };
-}
-
 export default function ProductPage({product}) {
     Meta.defaultProps = {
         title: "Nukes n' shit | Store",
         keywords: `${product.title}, ${product.categories.toString()}`,
-        description: `Price: ${product.price}€ ${product.content.markdown}`,
+        description: `${product.content.markdown}`,
         topic: product.title,
         type: "shop"
     }    
@@ -83,24 +69,23 @@ export default function ProductPage({product}) {
     const images = [product.coverPhoto.url, ...product.otherPhotos.map(photo => photo.url)]
 
     useEffect(() => {
-        window.addEventListener('resize', function(event){sizeCheck()});
-        
         /*--------------------
         SWIPER
         -------------------*/
 
-        Swiper.use([Navigation, Thumbs, Zoom]); // initialize swiper
+        Swiper.use([Navigation, Thumbs, Zoom, Mousewheel]); // initialize swiper
 
         var swiperThumb = new Swiper(".imgSwiper2", {
-        direction: 'vertical',
-        spaceBetween: 10,
-        slidesPerView: 'auto',
-        freeMode: true,
+            direction: 'horizontal',
+            spaceBetween: 10,
+            slidesPerView: 'auto',
+            mousewheel: true,
+            freeMode: true,
         });
 
         const swiper = new Swiper('.imgSwiper', {
         // Optional parameters
-        direction: 'vertical',
+        direction: 'horizontal',
         mousewheel: true,
         keyboardControl: true,
 
@@ -114,10 +99,6 @@ export default function ProductPage({product}) {
         },
         });
 
-        mainSwiper = swiper;
-        thumbSwiper = swiperThumb;
-        
-        sizeCheck(); 
     }, []);
 
     return (
