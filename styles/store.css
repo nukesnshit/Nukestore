@@ -82,11 +82,12 @@
         justify-content: center;
         align-items: center;
         padding: var(--pad-1x);
-        min-width: 100%;
+        width: 100% !important;
+        min-width: 100% !important;
     }
     .imgSwiper2 .swiper-slide {
         height: 58px !important;
-        min-width: 96px;
+        min-width: 96px !important;
         width: fit-content !important;
         padding: 1px;
         opacity: 0.6;
