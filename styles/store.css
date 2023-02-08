@@ -54,17 +54,15 @@
         color: var(--color-black) !important;
         background-color: var(--color-main) !important;
     }
+    #ItemButtons .aeffect{ width: fit-content; align-self: flex-end; }
 
 
 #imgFrame{
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 80px;
     max-width: 62%;
     display: flex;
     flex-direction: column-reverse;
 }
-    .imgSwiper {
+    .swiper-zoom-container{
         width: 100%;
         height: 70vh;
         min-height: 400px;
@@ -72,6 +70,7 @@
     .swiper-img{
         max-width: 100%;
         max-height: 100%;
+        height: fit-content;
         object-fit: cover;
     }
     .imgSwiper2{
@@ -81,13 +80,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: var(--pad-1x);
+        margin: var(--pad-1x)0 ;
+        padding: 0 var(--pad-1x);
         width: 100% !important;
         min-width: 100% !important;
     }
     .imgSwiper2 .swiper-slide {
         height: 58px !important;
-        min-width: 96px !important;
+        min-width: unset !important;
         width: fit-content !important;
         padding: 1px;
         opacity: 0.6;
@@ -176,21 +176,10 @@
 }
 
 @media only screen and (max-width: 1040px) {
-    #ItemSection{ flex-direction: column;}
+    #ItemSection{ flex-direction: column; padding-top: 80px;}
     #ItemParams{ width: 100%; padding-left: 0; }
-    #imgFrame{ width: 100%; max-width: 100%;}
-    .imgSwiper{
-        max-height: 300px;
-    }
-    .imgSwiper2 .swiper-slide {
-        height: auto;
-    }
-    .imgSwiper2{ 
-        margin: var(--pad-1x) 0;
-        margin-bottom: var(--pad-3x);
-        height: 100%;
-        width: 100%;
-    }
+    #imgFrame{ width: 100%; max-width: 100%; margin-bottom: var(--pad-1x);}
+    .swiper-zoom-container{max-height: 360px;}
 }
 
 @media only screen and (max-width: 580px) {

@@ -118,11 +118,12 @@ export default function Home() {
             </div>
             <div className='container flexcenter' id='Contact'>
               <div className='fancyTitle'>
-                <h5 data-aos="fade-down" id="ContactCheck">CONTACT</h5>
+                <h5 data-aos="fade-down">CONTACT</h5>
                 <h2 data-aos="fade-down">Get in touch</h2>
               </div>
-              <p className="centerText" data-aos="fade-down" style={{fontSize: "var(--fz-md)"}}>My inbox is always open, whether you have a question, offer or just want to say hi, I’ll try my best to get back to you!</p>
+              <p className="centerText" id="ContactCheck" data-aos="fade-down" style={{fontSize: "var(--fz-md)"}}>My inbox is always open, whether you have a question, offer or just want to say hi, I’ll try my best to get back to you!</p>
               <div style={{margin: "var(--pad-4x) 0"}} data-aos="fade-down"><a href='mailto:info@nukesnshit.com'><button>Contact</button></a></div>
+              <a className="aeffect" href="mailto:info@nukesnshit.com" data-aos="fade-down" style={{color: "var(--color-main)", fontSize: "16px"}}>info@nukesnshit.com</a>
             </div>
           </div>
         </section>

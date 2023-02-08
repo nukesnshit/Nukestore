@@ -97,6 +97,11 @@ export default function ProductPage({product}) {
         thumbs: {
             swiper: swiperThumb,
         },
+
+        zoom: {
+            maxRatio: 2.2,
+            minRatio: 1
+        },
         });
 
     }, []);
@@ -124,7 +129,9 @@ export default function ProductPage({product}) {
                             {images.map((img, i) => { // display all images
                             return(
                                 <div className="swiper-slide" key={i}>
-                                    <img className="swiper-img" src={img} alt="" />
+                                    <div className="swiper-zoom-container flexcenter">
+                                        <img className="swiper-img" src={img} alt="" />
+                                    </div>
                                 </div>
                             )})}
                         </div>
@@ -137,6 +144,7 @@ export default function ProductPage({product}) {
                     <div className="line"></div>
                     <div id="ItemDescription" dangerouslySetInnerHTML={{__html: product.content.html}}></div>
                     <div id="ItemButtons">
+                        <a className="aeffect" href="mailto:info@nukesnshit.com" style={{color: "var(--color-main)", fontSize: "16px"}}>info@nukesnshit.com</a>
                         <a href={`mailto:info@nukesnshit.com?subject=${product.title} Shipping Estimate&body=Hey! I'm interested in buying the ${product.title}.%0D%0A%0D%0ACountry: ${product.quantity > 1 ? "%0D%0AQuantity:":""} %0D%0A%0D%0AThanks.`}>
                             <button id="QuouteBtn">Get a quote for shipping</button>
                         </a>
