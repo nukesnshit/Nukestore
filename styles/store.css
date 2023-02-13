@@ -106,7 +106,6 @@
     align-self: stretch;
 }
     #ItemTitle{
-        font-size: var(--fz-xl);
         font-weight: 600;
         margin-bottom: var(--pad-1x);
     }
