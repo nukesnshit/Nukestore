@@ -91,7 +91,7 @@ export default function Blog({products}) {
             <NavBar />
             <section id="BlogContent">
                 <div className="inner">
-                    <div className="title">Store</div>
+                    <div className="title large">Store</div>
                     <div className="tagContainer flexcenter">
                         {tags.map((tag, i) => {
                             return (

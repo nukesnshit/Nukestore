@@ -1,8 +1,6 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
 
-import { useEffect } from "react";
-
 import Meta from "../../other/meta";
 
 const graphcms = new GraphQLClient(

@@ -6,7 +6,7 @@
   --color-black: rgba(28,28,28,1);
   --color-text: rgba(255,255,255,1);
 
-  --color-slate: #ccd6f6;
+  --color-slate: #ccd6f6; /*#ccd6f6 */
 
   --font-main: "Calibre","Inter","San Francisco","SF Pro Text",-apple-system,system-ui,sans-serif;
   --font-roboto: "Roboto","San Francisco","SF Pro Text",-apple-system,system-ui,sans-serif;
@@ -17,6 +17,7 @@
   --fz-m: 18px;
   --fz-md: 22px;
   --fz-l: 32px;
+  --fz-xl: 48px;
 
   --pad-1x: 10px;
   --pad-2x: 20px;
