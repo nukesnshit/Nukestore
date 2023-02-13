@@ -1,6 +1,8 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
 
+import { useEffect } from "react";
+
 import Meta from "../../other/meta";
 
 const graphcms = new GraphQLClient(
@@ -67,6 +69,9 @@ export default function Blog({post}) {
         <>
         <Meta />
         <main>
+            <style jsx global>
+                {`::-webkit-scrollbar-thumb { background-color: var(--color-main); }`}
+            </style>
             <NavBar />
             <section id="BlogContentMain">
                 <div className="inner flexcenter">

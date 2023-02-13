@@ -75,7 +75,3 @@
     transition: all .2s ease;
     transform: var(--underline-translate);
 }
-
-@media only screen and (max-width: 680px) {
-
-}
