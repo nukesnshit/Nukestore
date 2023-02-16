@@ -1,5 +1,6 @@
 import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
+import { useEffect } from "react"
 
 import Meta from "../../other/meta";
 
@@ -52,9 +53,27 @@ export async function getStaticProps({params}) {
     }
 }
 
+var navBar = null;
+var navUnderline = null;
+
+function scrollBar() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById("myBar").style.width = scrolled + "%";
+
+    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        navBar.style.height = "70px";
+        navUnderline.style.top = "56px";
+        document.getElementsByClassName("progress-container")[0].style.top = "70px";
+    } else {
+        navBar.style.height = "80px";
+        navUnderline.style.top = "66px";
+        document.getElementsByClassName("progress-container")[0].style.top = "80px";
+    }
+}
 
 export default function Blog({post}) {
-
     Meta.defaultProps = {
         title: "Nukes n' shit | Blog",
         keywords: `${post.title}, ${post.tags.toString()}`,
@@ -63,14 +82,32 @@ export default function Blog({post}) {
         type: "blog"
     }    
 
+    useEffect(() => {
+        navBar = document.getElementById("NavBarWrapper");
+        navUnderline = document.getElementById("underline");
+
+        window.onscroll = function() {scrollBar()};
+    }, [])
+
+
+
+    /*
+                <style jsx global>
+                {`::-webkit-scrollbar-thumb { background-color: var(--color-main); }`}
+            </style>
+    */
+
     return (
         <>
         <Meta />
         <main>
-            <style jsx global>
-                {`::-webkit-scrollbar-thumb { background-color: var(--color-main); }`}
-            </style>
             <NavBar />
+            <div className="progress-container">
+                <div className="progress-bar" id="myBar"></div>
+            </div>
+            <style jsx global>
+                {`#NavBarWrapper { background-color: #000; box-shadow: 0 0 20px 0 rgba(0,0,0,0.8); }`}
+            </style>
             <section id="BlogContentMain">
                 <div className="inner flexcenter">
                     {post !== null ? (
