@@ -84,6 +84,7 @@
     height: 2px;
     background: transparent;
     transition: var(--transition);
+    z-index: 70;
 }
   
 /* The progress bar (scroll indicator) */

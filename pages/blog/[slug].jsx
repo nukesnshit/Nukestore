@@ -106,7 +106,7 @@ export default function Blog({post}) {
                 <div className="progress-bar" id="myBar"></div>
             </div>
             <style jsx global>
-                {`#NavBarWrapper { background-color: #000; box-shadow: 0 0 20px 0 rgba(0,0,0,0.8); }`}
+                {`#NavBarWrapper { background-color: rgb(0 0 0 / 80%); box-shadow: 0 0 20px 0 rgba(0,0,0,0.8); }`}
             </style>
             <section id="BlogContentMain">
                 <div className="inner flexcenter">
