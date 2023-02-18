@@ -1,7 +1,3 @@
-#itemContainer .textContainer{
-    padding: var(--pad-3x) 0;
-}
-
 #itemContainer .itemPrice{
     position: absolute;
     right: 0;
@@ -22,7 +18,6 @@
     flex-direction: row;
     align-items: baseline;
     width: 100%;
-    min-height: fit-content;
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: var(--pad-4x);
@@ -54,7 +49,7 @@
         color: var(--color-black) !important;
         background-color: var(--color-main) !important;
     }
-    #ItemButtons .aeffect{ width: fit-content; align-self: flex-end; }
+    #ItemButtons .aeffect{ width: -moz-fit-content !important; width: fit-content; align-self: flex-end; }
 
 
 #imgFrame{
@@ -88,6 +83,7 @@
     .imgSwiper2 .swiper-slide {
         height: 58px !important;
         min-width: unset !important;
+        width: -moz-fit-content !important;
         width: fit-content !important;
         padding: 1px;
         opacity: 0.6;

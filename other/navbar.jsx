@@ -21,7 +21,7 @@ export default function NavBar() {
         setTimeout(() => {
             root.style.setProperty('--underline-translate', `translate3d(${offset}px,0,0)`);
         }, 280);
-        
+
         if(renewActive) {
             let url = null;
             if(to !== null) {url = to}

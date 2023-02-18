@@ -24,6 +24,7 @@ const gqlQuery = gql`
             slug
           	price
             categories
+            quantity
           	coverPhoto{url(
                 transformation: {
                     image: { resize: { width: 600, height: 600, fit: clip } }
@@ -113,6 +114,7 @@ export default function Blog({products}) {
                                             </div>
                                         </Link>
                                         <div className="textContainer">
+                                            <p className="dateName"><span></span><span className="textCenter">Q: {item.quantity}</span></p>
                                             <Link href={`/shop/${item.slug}`}>
                                                 <h2>{item.title}</h2>
                                             </Link>
