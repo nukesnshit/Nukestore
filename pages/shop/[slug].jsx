@@ -18,12 +18,12 @@ const gqlQuery = gql`
             title
             price
             quantity
+            condition
             coverPhoto {url}
             otherPhotos {url}
             content {html, markdown}
             categories
             slug
-
         }
     }
 `;
@@ -137,7 +137,7 @@ export default function ProductPage({product}) {
                 </div>
                 <div id="ItemParams">
                     <div id="ItemTitle"><h1>{product.title}</h1></div>
-                    <div id="ItemQuantity">{product.quantity} in stock</div>
+                    <div id="ItemQuantity">{product.quantity} in stock - {product.condition === "newOldStock" ? "New old stock":"Used"}</div>
                     <div id="ItemPrice">{product.price} €</div>
                     <div className="line"></div>
                     <div id="ItemDescription" dangerouslySetInnerHTML={{__html: product.content.html}}></div>

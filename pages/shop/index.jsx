@@ -24,6 +24,7 @@ const gqlQuery = gql`
           	price
             categories
             quantity
+            condition
           	coverPhoto{url(
                 transformation: {
                     image: { resize: { width: 600, height: 600, fit: clip } }
@@ -112,7 +113,7 @@ export default function Blog({products}) {
                                             </div>
                                         </Link>
                                         <div className="textContainer">
-                                            <p className="dateName"><span></span><span className="textCenter">Q: {item.quantity}</span></p>
+                                            <p className="dateName"><span>{item.condition === "newOldStock" ? "New Old Stock":"Used"}</span><span className="textCenter">Q: {item.quantity}</span></p>
                                             <Link href={`/shop/${item.slug}`}>
                                                 <h2>{item.title}</h2>
                                             </Link>

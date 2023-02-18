@@ -200,5 +200,8 @@
         font-size: var(--fz-m);
         font-weight: 600;
     }
+    #itemContainer .textContainer{
+        margin-bottom: var(--pad-1x);
+    }
 }
 
