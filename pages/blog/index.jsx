@@ -1,4 +1,3 @@
-import NavBar from "../../other/navbar"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
@@ -80,7 +79,6 @@ export default function Blog({posts}) {
         <>
         <Meta />
         <main>
-            <NavBar />
             <section id="BlogContent">
                 <div className="inner">
                     <div className="title large">blog</div>

@@ -1,4 +1,3 @@
-import NavBar from "../../other/navbar"
 import { GraphQLClient, gql } from "graphql-request"
 
 //swiper
@@ -110,7 +109,6 @@ export default function ProductPage({product}) {
         <>
         <Meta/>
         <main>
-            <NavBar />
             <section id="ItemSection">
                 <div id="imgFrame">
                     <div className="swiper imgSwiper2">

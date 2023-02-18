@@ -6,7 +6,7 @@ export default function Custom404() {
             <p>NUKES N<span style={{animation: "asddMainColor 3s linear infinite"}}>'</span> SHIT</p>
             <h1>404</h1>
             <Link href="/" id="NotFoundBtn" className="flexcenter"> HOME </Link>
-            <div class="frame">
+            <div className="frame">
                 <div></div>
                 <div></div>
                 <div></div>

@@ -5,7 +5,6 @@ import { loadFirePreset } from 'tsparticles-preset-fire';
 import { particlesSettings } from '../other/particles';
 
 import Link from 'next/link';
-import NavBar from '../other/navbar';
 
 import Meta from '../other/meta'
 
@@ -54,7 +53,6 @@ export default function Home() {
     <>
       <Meta />
       <main>
-        <NavBar />
         <section id="Hero">
           <div id="HeroContainer">
             <div id='HeroTitle'>

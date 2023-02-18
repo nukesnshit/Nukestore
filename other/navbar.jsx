@@ -2,14 +2,16 @@ import Link from "next/link"
 import { useEffect, useState } from "react";
 
 var currentLink = "";
+var scrollCheckDisabled = false;
 
 export default function NavBar() {
     var navBar = null;
     var navUnderline = null;
 
-    function ul(index, renewActive = false, to = null) {
+    function ul(index, calledFromScroll = false) {
         const root = document.documentElement;
         const el = document.querySelectorAll("#Nav ul li")[index];
+        let links = document.querySelectorAll("#Nav ul li div a");
         const rect = el.getBoundingClientRect()
         const navUnderline = document.getElementById("underline");
 
@@ -17,29 +19,12 @@ export default function NavBar() {
         offset = offset > 0 ? offset + 18 : offset + 18;
     
         navUnderline.style.transform = `translateX(${offset}px)`;
-
-        setTimeout(() => {
-            root.style.setProperty('--underline-translate', `translate3d(${offset}px,0,0)`);
-        }, 280);
-
-        if(renewActive) {
-            let url = null;
-            if(to !== null) {url = to}
-            else {url = currentLink}
-            let links = document.querySelectorAll("#Nav ul li div a");
-
-            let i = 0;
-            let active = 0;
-            links.forEach(link => { link.classList.remove("active") })
-            links.forEach(link => {
-                if (url == "") {active = 2;}
-                else if (link.innerHTML.toLowerCase().includes(url.toLowerCase())) {
-                    link.classList.add("active");
-                    active = i;
-                } i+=1;
-            })
-
-            ul(active)
+        links.forEach(link => { link.classList.remove("active") })
+        links[index].classList.add("active");
+        
+        if (!calledFromScroll) {
+            scrollCheckDisabled = true;
+            setTimeout(() => {scrollCheckDisabled = false;}, 600);
         }
     }
 
@@ -70,22 +55,33 @@ export default function NavBar() {
     function scrollFunction() {
         // Contact / About Section checker
 
+        currentLink = window.location.href.split("/")[3].replace("#", "");
+        const linkafter = window.location.href.split("/")[4];
         if(currentLink == "" || currentLink ==  "About" || currentLink == "Contact"){
+            if(scrollCheckDisabled) {return;}
             let contact = document.getElementById("ContactCheck");
             let about = document.getElementById("AboutCheck");
 
-            if (contact.classList.contains("aos-animate")) {ul(4, true, "contact"); currentLink = "Contact";}
-            else if (about.classList.contains("aos-animate")) {ul(3, true, "about"); currentLink = "About";}
-            else {ul(2, true, ""); currentLink = "";}
+            if (contact.classList.contains("aos-animate")) {ul(4, true); currentLink = "Contact";}
+            else if (about.classList.contains("aos-animate")) {ul(3, true); currentLink = "About";}
+            else {ul(2, true); currentLink = "";}
+
+        } else if (currentLink == "blog" && linkafter !== undefined) { // top scrollbar
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
         }
 
         // NavBar size
         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
           navBar.style.height = "70px";
           navUnderline.style.top = "56px";
+          if(currentLink == "blog" && linkafter !== undefined) {document.getElementsByClassName("progress-container")[0].style.top = "70px"}
         } else {
           navBar.style.height = "80px";
           navUnderline.style.top = "66px";
+          if(currentLink == "blog" && linkafter !== undefined) {document.getElementsByClassName("progress-container")[0].style.top = "80px"}
         }
       }
 
@@ -95,19 +91,19 @@ export default function NavBar() {
                 <div id="Nav">
                     <ul>
                         <div id="underline"></div>
-                        <li className="flexcenter"><div><Link href="/blog" >
+                        <li className="flexcenter"><div onClick={() => ul(0)}><Link href="/blog" >
                             Blog
                         </Link></div></li>
-                        <li className="flexcenter"><div><Link href="/shop" >
+                        <li className="flexcenter"><div onClick={() => ul(1)}><Link href="/shop" >
                             Shop
                         </Link></div></li>
-                        <li><div onClick={() => {ul(2, true); currentLink = ""}}><Link href="/" className="flexcenter" >
+                        <li><div onClick={() => {ul(2); currentLink = ""}}><Link href="/" className="flexcenter" >
                             <img id="LogoImg" src="https://upload.wikimedia.org/wikipedia/commons/0/08/AtomBomb.png" />
                         </Link></div></li>
-                        <li className="flexcenter"><div onClick={() => {ul(3, true); currentLink = "About"}}><Link href="/#About" >
+                        <li className="flexcenter"><div onClick={() => {ul(3); currentLink = "About"}}><Link href="/#About" >
                             About
                         </Link></div></li>
-                        <li className="flexcenter"><div onClick={() => {ul(4, true); currentLink = "Contact"}}><Link href="/#Contact" >
+                        <li className="flexcenter"><div onClick={() => {ul(4); currentLink = "Contact"}}><Link href="/#Contact" >
                             Contact
                         </Link></div></li>
                     </ul>

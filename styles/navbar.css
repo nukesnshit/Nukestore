@@ -8,6 +8,7 @@
     overflow: hidden;
     padding: 0 var(--pad-4x);
     backdrop-filter: blur(12px);
+    --webkit-backdrop-filter: blur(12px);
     z-index: 69;
     font-family: var(--font-main);
     transition: var(--transition);
