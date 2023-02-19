@@ -1,31 +1,31 @@
 import Link from "next/link"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 var currentLink = "";
 var scrollCheckDisabled = false;
 
+export function ul(index, calledFromScroll = false) {
+    const el = document.querySelectorAll("#Nav ul li")[index];
+    let links = document.querySelectorAll("#Nav ul li div a");
+    const rect = el.getBoundingClientRect()
+    const navUnderline = document.getElementById("underline");
+
+    var offset = (rect.left - (window.innerWidth / 2)) + el.offsetWidth / 2;
+    offset = offset > 0 ? offset + 18 : offset + 18;
+
+    navUnderline.style.transform = `translateX(${offset}px)`;
+    links.forEach(link => { link.classList.remove("active") })
+    links[index].classList.add("active");
+    
+    if (!calledFromScroll) {
+        scrollCheckDisabled = true;
+        setTimeout(() => {scrollCheckDisabled = false;}, 400);
+    }
+}
+
 export default function NavBar() {
     var navBar = null;
     var navUnderline = null;
-
-    function ul(index, calledFromScroll = false) {
-        const el = document.querySelectorAll("#Nav ul li")[index];
-        let links = document.querySelectorAll("#Nav ul li div a");
-        const rect = el.getBoundingClientRect()
-        const navUnderline = document.getElementById("underline");
-
-        var offset = (rect.left - (window.innerWidth / 2)) + el.offsetWidth / 2;
-        offset = offset > 0 ? offset + 18 : offset + 18;
-    
-        navUnderline.style.transform = `translateX(${offset}px)`;
-        links.forEach(link => { link.classList.remove("active") })
-        links[index].classList.add("active");
-        
-        if (!calledFromScroll) {
-            scrollCheckDisabled = true;
-            setTimeout(() => {scrollCheckDisabled = false;}, 400);
-        }
-    }
 
     //get url and set active link
     useEffect(() => {

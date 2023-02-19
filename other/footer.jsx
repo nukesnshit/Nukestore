@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ul } from "./navbar"
 
 export default function Footer () {
     return (
@@ -10,11 +11,11 @@ export default function Footer () {
                     <p>Working for you since 2018</p>
                 </div>
                 <div id="FooterNav">
-                    <Link className="NavBtn" href="/">Home</Link>
-                    <Link className="NavBtn" href="/blog">Blog</Link>
-                    <Link className="NavBtn" href="/shop">Shop</Link>
-                    <Link className="NavBtn" href="/#About">About</Link>
-                    <Link className="NavBtn" href="/#Contact">Contact</Link>
+                    <Link className="NavBtn" href="/" onClick={() => ul(2)}>Home</Link>
+                    <Link className="NavBtn" href="/blog" onClick={() => ul(0)}>Blog</Link>
+                    <Link className="NavBtn" href="/shop" onClick={() => ul(1)}>Shop</Link>
+                    <Link className="NavBtn" href="/#About" onClick={() => ul(3)}>About</Link>
+                    <Link className="NavBtn" href="/#Contact" onClick={() => ul(4)}>Contact</Link>
                 </div>
             </div>
             <div id="copyright">

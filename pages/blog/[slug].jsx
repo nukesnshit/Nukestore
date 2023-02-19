@@ -1,5 +1,4 @@
 import { GraphQLClient, gql } from "graphql-request"
-import { useEffect } from "react"
 
 import Meta from "../../other/meta";
 
@@ -66,10 +65,6 @@ export default function Blog({post}) {
                 {`::-webkit-scrollbar-thumb { background-color: var(--color-main); }`}
             </style>
     */
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [])
 
     return (
         <>

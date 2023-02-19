@@ -1,10 +1,10 @@
-import Head from 'next/head'
 import { useCallback, useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFirePreset } from 'tsparticles-preset-fire';
 import { particlesSettings } from '../other/particles';
 
 import Link from 'next/link';
+import { ul } from "../other/navbar";
 
 import Meta from '../other/meta'
 
@@ -59,10 +59,10 @@ export default function Home() {
               <div className="heroText">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</div>
             </div>
             <div id='HeroNav'>
-              <Link className="aeffect fixBug" href='/blog'>BLOG</Link>
-              <Link className="aeffect fixBug" href='/shop'>SHOP</Link>
-              <Link className="aeffect fixBug" href='/#About'>ABOUT</Link>
-              <Link className="aeffect fixBug" href='/#Contact'>CONTACT</Link>
+              <Link className="aeffect fixBug" href='/blog' onClick={() => ul(0)}>BLOG</Link>
+              <Link className="aeffect fixBug" href='/shop' onClick={() => ul(1)}>SHOP</Link>
+              <Link className="aeffect fixBug" href='/#About' onClick={() => ul(3)}>ABOUT</Link>
+              <Link className="aeffect fixBug" href='/#Contact' onClick={() => ul(4)}>CONTACT</Link>
             </div>
           </div>
         <Particles id="tsparticles" options={particlesSettings} init={particlesInit} loaded={particlesLoaded} />
