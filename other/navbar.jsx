@@ -9,7 +9,6 @@ export default function NavBar() {
     var navUnderline = null;
 
     function ul(index, calledFromScroll = false) {
-        const root = document.documentElement;
         const el = document.querySelectorAll("#Nav ul li")[index];
         let links = document.querySelectorAll("#Nav ul li div a");
         const rect = el.getBoundingClientRect()
@@ -24,7 +23,7 @@ export default function NavBar() {
         
         if (!calledFromScroll) {
             scrollCheckDisabled = true;
-            setTimeout(() => {scrollCheckDisabled = false;}, 600);
+            setTimeout(() => {scrollCheckDisabled = false;}, 400);
         }
     }
 

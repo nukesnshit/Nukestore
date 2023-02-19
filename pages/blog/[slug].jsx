@@ -67,6 +67,10 @@ export default function Blog({post}) {
             </style>
     */
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <>
         <Meta />
