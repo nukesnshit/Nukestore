@@ -29,7 +29,6 @@
     padding-top: var(--pad-2x);
     gap: var(--pad-1x);
     justify-content: flex-end;
-    height: 100%;
 }
     #ItemButtons button{
         font-weight: 600;
@@ -52,8 +51,9 @@
     #ItemButtons .aeffect{ width: -moz-fit-content !important; width: fit-content; align-self: flex-end; }
 
 
+#leftFrame{max-width: 62%;}
+.questionContainer.mobile .question{max-width: 100%;}
 #imgFrame{
-    max-width: 62%;
     display: flex;
     flex-direction: column-reverse;
 }
@@ -140,8 +140,6 @@
               transform-origin: bottom left;
             }
 
-
-
 .line{
     width: 100%;
     height: 1px;
@@ -151,6 +149,111 @@
 
 .itemWrapper {opacity: 0; pointer-events: none;}
 .itemAnim {animation: fade-down-unscuff 0.4s ease forwards;}
+
+
+.QnA{
+    text-align: left;
+    padding: var(--pad-2x);
+    margin-top: var(--pad-2x);
+}
+
+.questionContainer.mobile {display: none;}
+
+#questions{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: var(--pad-1x);
+}
+.question{
+    max-width: var(--max-width-blog);
+    background-color: black;
+    border-radius: var(--border-radius-small);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 8px;
+    font-size: var(--fz-m);
+    padding: var(--pad-2x);
+    word-break: break-word;
+}
+    .question .questionDate{
+        display: flex;
+        align-items: flex-end;
+        float: right;
+        height: 24px;
+        font-size: var(--fz-sm);
+        font-weight: 400;
+        color: var(--color-main);
+    }
+    .question .userName{
+        font-weight: 600;
+        color: var(--color-main);
+    }
+    .question p{
+        margin-top: var(--pad-1x);
+    }
+    .questionAnswer{
+        margin-top: var(--pad-2x);
+    }
+
+#questionForm{
+    display: flex;
+    flex-direction: column;
+    margin: 0 var(--pad-1x);
+}
+    .questionFormHeader{ display: flex; justify-content: space-between; }
+    .questionFormHeader input{ 
+        width: 33%; 
+        border: none;
+        border-radius: var(--border-radius-small);
+        padding: var(--pad-1x);
+        margin-bottom: var(--pad-1x);
+        background-color: var(--color-black);
+        transition: var(--transition);
+        color: white;
+    }
+    .questionFormHeader input:focus{ outline: none; }
+    .questionFormHeader input::placeholder{ color: rgb(180, 180, 180);}
+    .questionFormHeader input:hover{ background-color: rgb(32, 32, 32);}
+
+    #questionForm textarea{
+        border: none;
+        resize: none;
+        border-radius: var(--border-radius-small);
+        padding: var(--pad-1x);
+        background-color: var(--color-black);
+        transition: var(--transition);
+        color: white;
+        height: 70px;
+        width: 100%;
+    }
+    #questionForm textarea:focus{ outline: none; }
+    #questionForm textarea::placeholder{ color: rgb(180, 180, 180); }
+    #questionForm textarea:hover{ background-color: rgb(32, 32, 32); }
+    #questionForm button{
+        border: none;
+        border-radius: var(--border-radius-small);
+        padding: var(--pad-1x);
+        margin-top: var(--pad-1x);
+        color: black;
+        transition: var(--transition);
+    }
+    #questionForm button svg{
+        transition: var(--transition); padding-left: 2px;}
+    #questionForm button:hover{ 
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 1) 0px 8px 8px;
+    }
+    #questionForm button:hover svg{ padding-left: 6px;}
+
+    #questionForm .QnA{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--pad-1x);
+        margin-bottom: var(--pad-2x);
+    }
+
 
 @keyframes fade-down-unscuff {
     0% {
@@ -174,7 +277,15 @@
     #ItemSection{ flex-direction: column; padding-top: 80px;}
     #ItemParams{ width: 100%; padding-left: 0; }
     #imgFrame{ width: 100%; max-width: 100%; margin-bottom: var(--pad-1x);}
+    #leftFrame{ width: 100%; max-width: 100%;}
     .swiper-zoom-container{max-height: 360px;}
+    .questionContainer.mobile{display: block;}
+    .questionContainer.desktop{display: none;}
+}
+
+@media only screen and (max-width: 970px) {
+    #BlogPanel{ display: none;}
+    #BlogHtml { width: auto; max-width: var(--max-width-blog); }
 }
 
 @media only screen and (max-width: 580px) {

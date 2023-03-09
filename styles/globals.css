@@ -28,6 +28,7 @@
   --transition: all 0.2s ease;
 
   --max-width: 1140px;
+  --max-width-blog: 636px;
   --underline-translate: translate3d(0,0,0);
 }
 
@@ -141,6 +142,50 @@ a{
 
 .centerText{text-align: center;}
 .rightText{text-align: right;}
+
+.Popup{
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 120px;
+  right: 0;
+  max-width: 360px;
+  width: auto;
+  transform: translateX(110%);
+  color: white;
+  font-family: var(--font-main);
+  background-color: rgba(0,0,0,0.7);
+  border-radius: var(--border-radius-small);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: solid 1px greenyellow;
+  border-right: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 10px 0 rgba(172, 255, 47, 0.3);
+  transition: var(--transition);
+  z-index: 16;
+}
+  .Popup svg{
+    width: 80px;
+    height: 80px;
+    padding: var(--pad-1x);
+    margin-left: var(--pad-1x);
+    color: greenyellow;
+  }
+  .Popup p{
+    padding: var(--pad-1x);
+    padding-top: 6px;
+    padding-bottom: 16px;
+    font-size: var(--fz-s);
+  }
+  .Popup.red{
+    border: solid 1px red;
+    border-right: none;
+    box-shadow: 0 0 10px 0 rgba(255, 0, 0, 0.3);
+  }
+  .Popup.red svg{color: red;}
 
 ::-webkit-scrollbar{
   width: 14px;

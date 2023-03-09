@@ -1,7 +1,8 @@
 #BlogContentMain .inner{
+    display: flex;
+    align-items: baseline;
     width: 100%;
     text-align: center;
-    flex-direction: column;
     padding-bottom: 0;
 }
 
@@ -9,8 +10,12 @@
     text-align: left;
     padding: var(--pad-5x) 0;
     font-size: var(--fz-s);
-    max-width: 940px;
+    width: var(--max-width-blog);
 }
+    #BlogHtml .image{
+        margin-bottom: var(--pad-2x);
+        margin-top: var(--pad-2x);
+    }
     #BlogHtml img{
         display: block;
         max-width: 100%;
@@ -19,14 +24,20 @@
         height: auto;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: var(--pad-2x);
-        margin-top: var(--pad-2x);
-
-        border-radius: var(--border-radius);
+        margin-bottom: var(--pad-1x);
+        border-radius: var(--border-radius-small);
+        box-shadow: 0 0 5px black;
     }
     #BlogHtml p{
         padding: var(--pad-1x) 0;
     }
+    figcaption{
+        font-size: var(--fz-xs);
+        font-style: italic;
+        padding-left: var(--pad-2x);
+        color: #bdbdbd;
+    }
+
 
 iframe{
     position: relative;
@@ -48,9 +59,11 @@ iframe{
     text-align: left;
     margin-bottom: var(--pad-2x);
     background-color: var(--color-black);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-small);
+    box-shadow: 0 0 5px black;
     padding: var(--pad-2x);
     margin-bottom: var(--pad-5x);
+    width: 100%;
 }
     .author .avatar{
         display: flex;
@@ -73,11 +86,39 @@ iframe{
         font-weight: 700;
         color: var(--color-main);
     }
-    
 
-@media only screen and (max-width: 420px) {
-    .authorData{
-        width: 100%;
-        text-align: center;
-    }
+#BlogPanel{
+    display: flex;
+    flex-direction: column;
+    gap: var(--pad-2x);
+    text-align: left;
+    width: 320px;
+    margin-left: var(--pad-3x);
+    font-size: var(--fz-s);
 }
+    #BlogPanelTitle{
+        font-size: var(--fz-md);
+        font-weight: 700;
+        margin-bottom: var(--pad-2x);
+    }
+    .panelTitle{
+        font-size: var(--fz-m);;
+        font-weight: 700;
+    }
+    #BlogPanel a{
+        color: var(--color-slate);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        font-size: 14px
+    }
+    #BlogPanel a:hover{color: var(--color-main);}
+    .grayBox{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: var(--color-black);
+        border-radius: var(--border-radius-small);
+        box-shadow: 0 0 5px black;
+        padding: var(--pad-2x);
+        margin: var(--pad-2x) 0;
+    }
