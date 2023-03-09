@@ -77,9 +77,9 @@ export default function Blog({post}) {
                 {`#NavBarWrapper { background-color: rgb(0 0 0 / 80%); box-shadow: 0 0 20px 0 rgba(0,0,0,0.8); }`}
             </style>
             <section id="BlogContentMain">
-                <div className="inner flexcenter">
+                <div>
                     {post !== null ? (
-                        <div>
+                        <div className="inner" style={{flexDirection: "column", alignItems: "center"}}>
                             <div className="title"> {post.title} </div>
                             <div className="Date"> {post.datePublished} - {post.tags.map((tag, i) => (
                                 <span key={i}>{tag}{i || post.tags.length === 1 ? "":", "}</span>
@@ -87,15 +87,6 @@ export default function Blog({post}) {
                             <div id="BlogHtml" dangerouslySetInnerHTML={{__html: post.content.html}} ></div>
                         </div>
                     ) : ( <div> Loading... </div> )}
-                </div>
-                <div className="author">
-                    <div className="avatar">
-                        <img src={post.author.avatar.url}></img>
-                    </div>
-                    <div className="authorData">
-                        <h5>The Author</h5>
-                        <h3 className="authorName">{post.author.name}</h3>
-                    </div>
                 </div>
             </section>
         </main>

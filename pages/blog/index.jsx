@@ -16,7 +16,7 @@ const graphcms = new GraphQLClient(
 
 const gqlQuery = gql`
     {
-        posts(first:90){
+        posts(first:90 orderBy: datePublished_DESC){
             title
             slug
             datePublished

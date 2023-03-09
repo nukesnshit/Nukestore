@@ -135,7 +135,7 @@ export default function ProductPage({product}) {
                         </div>
                     </div>
                 </div>
-                <div id="ItemParams">
+                <div id="ItemParams" style={{minWidth: "32%"}}>
                     <div id="ItemTitle"><h1>{product.title}</h1></div>
                     <div id="ItemQuantity">{product.quantity} in stock - {product.condition === "newOldStock" ? "New old stock":"Used"}</div>
                     <div id="ItemPrice">{product.price} €</div>
