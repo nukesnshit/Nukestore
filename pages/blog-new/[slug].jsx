@@ -36,8 +36,10 @@ export default function Blog({post}) {
     function handlePostComment() {
         const name = document.getElementById("questionNameQ").value;
         const content = document.getElementById("questionContentQ").value;
+        const email = document.getElementById("questionEmailQ").value;
         const data = {
             name: name ? name : "Anonymous",
+            email,
             content,
             relationID: post.id,
         }
@@ -55,7 +57,7 @@ export default function Blog({post}) {
                     okPopup.style.transform = "translateX(110%)";
                 }, 7000);
             } else {
-                const errorPopup = document.getElementById("errorPopup");
+                const errorPopup = document.getElementById("ErrPopup");
                 errorPopup.style.transform = "translateX(0)";
                 setTimeout(() => {
                     errorPopup.style.transform = "translateX(110%)";
@@ -109,7 +111,8 @@ export default function Blog({post}) {
                                     <button>Submit <FontAwesomeIcon icon={faChevronRight}/> </button>
                                 </div>
                                 <div className="questionFormHeader">
-                                    <input type="text" name="name" placeholder="Name" maxLength={64} id="questionNameQ" style={{width: "100%"}}/>
+                                    <input type="text" name="name" placeholder="Name" maxLength={64} id="questionNameQ" style={{width: "calc(50% - 5px)"}}/>
+                                    <input type="email" name="_replyto" required placeholder="Email" maxLength={64} id="questionEmailQ" style={{width: "calc(50% - 5px)"}}/>
                                 </div>
                                 <textarea name="content" placeholder="Content" maxLength={512} required id="questionContentQ"/>
                             </form>

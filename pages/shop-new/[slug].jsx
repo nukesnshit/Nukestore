@@ -183,7 +183,7 @@ export default function ProductPage({product}) {
                                     <div className="QnA">Ask a question <button>Submit <FontAwesomeIcon icon={faChevronRight}/></button></div>
                                     <div className="questionFormHeader">
                                         <input type="text" name="title" placeholder="Title" maxLength={128} required id="questionTitleQ"/>
-                                        <input type="email" name="_replyto" placeholder="Email" maxLength={64} id="questionEmailQ"/>
+                                        <input type="email" name="_replyto" required placeholder="Email" maxLength={64} id="questionEmailQ"/>
                                         <input type="text" name="name" placeholder="Name" maxLength={64} id="questionNameQ"/>
                                     </div>
                                     <textarea name="content" placeholder="Question" maxLength={512} required id="questionContentQ"/>
@@ -240,7 +240,7 @@ export default function ProductPage({product}) {
                                 <div className="QnA">Ask a question <button>Submit <FontAwesomeIcon icon={faChevronRight}/></button></div>
                                 <div className="questionFormHeader">
                                     <input type="text" name="name" placeholder="Name" maxLength={64} style={{width: "calc(50% - 5px)"}} id="questionNameQ"/>
-                                    <input type="email" name="_replyto" placeholder="Email" maxLength={64} style={{width: "calc(50% - 5px)"}} id="questionEmailQ"/>
+                                    <input type="email" name="_replyto" placeholder="Email" maxLength={64} required style={{width: "calc(50% - 5px)"}} id="questionEmailQ"/>
                                 </div>
                                 <div className="questionFormHeader">
                                     <input type="text" name="title" placeholder="Title" maxLength={128} style={{width: "100%"}} required id="questionTitleQ"/>
