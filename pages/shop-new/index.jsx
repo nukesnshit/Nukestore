@@ -24,7 +24,7 @@ const productsPerPage = 99;
 
 export default function Shop({products}) {
 
-    const tags = ["All", "Dosimetric equipment", "Masks", "Radioactive stuff", "Other"]
+    const tags = ["All", "Dosimetric Equipment", "Masks", "Radioactive Stuff", "Other"]
 
     Meta.defaultProps = {
         title: "Nukes n' shit | Store",
@@ -33,6 +33,8 @@ export default function Shop({products}) {
         topic: "Antiques",
         type: "shop"
     }
+
+    console.log(products)
     
     const [activeTag, setActiveTag] = useState("All")
     const [activePage, setActivePage] = useState(1)
