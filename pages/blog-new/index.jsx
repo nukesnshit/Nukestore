@@ -32,7 +32,7 @@ export default function Blog({posts}) {
     const [activeTag, setActiveTag] = useState("All")
     const [sortedPosts, setPosts] = useState([])
 
-    const tags = ["All", "Bunkers", "Abandoned", "Archive", "Restoration"]
+    const tags = ["All", "Bunkers", "Abandoned", "Archive", "Restoration", "News", "Other"]
 
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
