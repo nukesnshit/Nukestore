@@ -202,7 +202,7 @@
 }
     .questionFormHeader{ display: flex; justify-content: space-between; }
     .questionFormHeader input{ 
-        width: 33%; 
+        width: calc(50% - 5px); 
         border: none;
         border-radius: var(--border-radius-small);
         padding: var(--pad-1x);

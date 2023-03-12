@@ -23,7 +23,6 @@ export async function getStaticProps(){
 const productsPerPage = 99;
 
 export default function Shop({products}) {
-
     const tags = ["All", "Dosimetric Equipment", "Masks", "Radioactive Stuff", "Other"]
 
     Meta.defaultProps = {

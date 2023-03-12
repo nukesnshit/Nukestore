@@ -82,7 +82,6 @@ export default function ProductPage({product}) {
 
     // Form does not work, I don't know why, this'll work for now
     function handleQuestion() {
-        const title = document.getElementById("questionTitleQ").value;
         const content = document.getElementById("questionContentQ").value;
         const email = document.getElementById("questionEmailQ").value;
         var name = document.getElementById("questionNameQ").value;
@@ -90,7 +89,6 @@ export default function ProductPage({product}) {
         name ? name : name = "Anonymous";
 
         const question = {
-            title,
             content,
             email,
             name,
@@ -162,10 +160,9 @@ export default function ProductPage({product}) {
                                 return(
                                     <div className="question" key={i} style={{maxWidth: "100%"}}>
                                         <div className="questionHeader">
-                                            <span className="userName">{question.name}</span> - <span>{question.title}</span>
+                                            <span className="userName">{question.name}</span>: <span>{question.content}</span>
                                             <span className="questionDate"> {question.createdAt.substring(0, 10)}</span>
                                         </div>
-                                        <p>{question.content}</p>
                                         {question.answer.data !== null ? (
                                             <div className="questionAnswer">
                                                 <span className="userName">{question.answer.data.attributes.author.data.attributes.Name} </span>
@@ -182,7 +179,6 @@ export default function ProductPage({product}) {
                                 <form method="POST" action="javascript:void(0);" onSubmit={() => handleQuestion()}>
                                     <div className="QnA">Ask a question <button>Submit <FontAwesomeIcon icon={faChevronRight}/></button></div>
                                     <div className="questionFormHeader">
-                                        <input type="text" name="title" placeholder="Title" maxLength={128} required id="questionTitleQ"/>
                                         <input type="email" name="_replyto" required placeholder="Email" maxLength={64} id="questionEmailQ"/>
                                         <input type="text" name="name" placeholder="Name" maxLength={64} id="questionNameQ"/>
                                     </div>
@@ -219,10 +215,9 @@ export default function ProductPage({product}) {
                                 return(
                                     <div className="question" key={i}>
                                         <div className="questionHeader">
-                                            <span className="userName">{question.name}</span> - <span>{question.title}</span>
+                                            <span className="userName">{question.name}</span>: <span>{question.content}</span>
                                             <span className="questionDate"> {question.createdAt.substring(0, 10)}</span>
                                         </div>
-                                        <p>{question.content}</p>
                                         {question.answer.data !== null ? (
                                             <div className="questionAnswer">
                                                 <span className="userName">{question.answer.data.attributes.author.data.attributes.Name} </span>
@@ -239,11 +234,8 @@ export default function ProductPage({product}) {
                             <form method="POST" action="javascript:void(0);" onSubmit={() => handleQuestion()}>
                                 <div className="QnA">Ask a question <button>Submit <FontAwesomeIcon icon={faChevronRight}/></button></div>
                                 <div className="questionFormHeader">
-                                    <input type="text" name="name" placeholder="Name" maxLength={64} style={{width: "calc(50% - 5px)"}} id="questionNameQ"/>
-                                    <input type="email" name="_replyto" placeholder="Email" maxLength={64} required style={{width: "calc(50% - 5px)"}} id="questionEmailQ"/>
-                                </div>
-                                <div className="questionFormHeader">
-                                    <input type="text" name="title" placeholder="Title" maxLength={128} style={{width: "100%"}} required id="questionTitleQ"/>
+                                    <input type="text" name="name" placeholder="Name" maxLength={64} id="questionNameQ"/>
+                                    <input type="email" name="_replyto" placeholder="Email" maxLength={64} required id="questionEmailQ"/>
                                 </div>
                                 <textarea name="content" placeholder="Question" maxLength={512} required id="questionContentQ"/>
                             </form>
