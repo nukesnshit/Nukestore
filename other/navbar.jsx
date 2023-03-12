@@ -90,10 +90,10 @@ export default function NavBar() {
                 <div id="Nav">
                     <ul>
                         <div id="underline"></div>
-                        <li className="flexcenter"><div onClick={() => ul(0)}><Link href="/blog-new" >
+                        <li className="flexcenter"><div onClick={() => ul(0)}><Link href="/blog" >
                             Blog
                         </Link></div></li>
-                        <li className="flexcenter"><div onClick={() => ul(1)}><Link href="/shop-new" >
+                        <li className="flexcenter"><div onClick={() => ul(1)}><Link href="/shop" >
                             Shop
                         </Link></div></li>
                         <li><div onClick={() => {ul(2); currentLink = ""}}><Link href="/" className="flexcenter" >

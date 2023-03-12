@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
-import { GraphQLClient, gql } from "graphql-request"
-
 // animate on scroll library
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -10,32 +8,10 @@ import { calcAosTime } from "..";
 
 import Meta from "../../other/meta";
 
-const graphcms = new GraphQLClient(
-    "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
-);
-
-//This is the worst possible way to do this. Changing it soon.
-
-const gqlQuery = gql`
-    {
-        products(first:90){
-            title
-            slug
-          	price
-            categories
-            quantity
-            condition
-          	coverPhoto{url(
-                transformation: {
-                    image: { resize: { width: 600, height: 600, fit: clip } }
-                }
-            )}
-        }
-    }
-`;
+const api = "https://nukesnshit.ignuxas.com/api";
 
 export async function getStaticProps(){
-    const {products} = await graphcms.request(gqlQuery)
+    const products = await fetch(`${api}/products`).then(res => res.json())
     return {
         props: {
             products,
@@ -46,20 +22,21 @@ export async function getStaticProps(){
 
 const productsPerPage = 99;
 
-export default function Blog({products}) {
+export default function Shop({products}) {
+
+    const tags = ["All", "Dosimetric Equipment", "Masks", "Radioactive Stuff", "Other"]
+
     Meta.defaultProps = {
         title: "Nukes n' shit | Store",
-        keywords: '',
+        keywords: `Dosimetric equipment, Masks, "adioactive stuff`,
         description: "We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques.",
         topic: "Antiques",
         type: "shop"
     }
-    
+
     const [activeTag, setActiveTag] = useState("All")
     const [activePage, setActivePage] = useState(1)
     const [sortedItems, setSortedItems] = useState([])
-
-    const tags = ["All", "Dosimetric equipment", "Masks", "Radioactive stuff", "Other"]
 
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
@@ -68,7 +45,7 @@ export default function Blog({products}) {
         for (let i = 0; i < items.length; i++) { items[i].classList.remove("itemAnim") } 
 
         if(activeTag === "All"){setSortedItems(products)} 
-        else { setSortedItems( products.filter(product => product.categories.includes(activeTag))) }
+        else { setSortedItems( products.filter(product => product.tags.includes(activeTag))) }
         
         // should replace this with a better solution, maybe a ref
         var checkExist = setInterval(function() {
@@ -109,11 +86,11 @@ export default function Blog({products}) {
                                         <Link href={`/shop/${item.slug}`}>
                                             <div className="imgContainer">
                                                 <div className="itemPrice">{item.price} €</div>
-                                                <img src={item.coverPhoto.url} alt="" />
+                                                <img src={item.coverPhoto} alt="" />
                                             </div>
                                         </Link>
                                         <div className="textContainer">
-                                            <p className="dateName"><span>{item.condition === "newOldStock" ? "New Old Stock":"Used"}</span><span className="textCenter">Q: {item.quantity}</span></p>
+                                            <p className="dateName"><span>{item.condition === "New_old_stock" ? "New Old Stock":"Used"}</span><span className="textCenter">Quantity: {item.quantity}</span></p>
                                             <Link href={`/shop/${item.slug}`}>
                                                 <h2>{item.title}</h2>
                                             </Link>

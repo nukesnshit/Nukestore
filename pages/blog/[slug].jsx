@@ -1,38 +1,12 @@
-import { GraphQLClient, gql } from "graphql-request"
-
 import Meta from "../../other/meta";
 
-const graphcms = new GraphQLClient(
-    "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
-);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const gqlQuery = gql`
-    query Post($slug: String!) {
-        post(where: {slug: $slug}) {
-            title
-            slug
-            datePublished
-            tags
-            coverPhoto {url}
-            author {
-                name 
-                avatar {url}
-            }
-            content {html, markdown}
-        }
-    }
-`;
-
-const slugList = gql`
-    {
-        posts {
-            slug
-        }
-    }
-`;
+const api = "https://nukesnshit.ignuxas.com/api";
 
 export async function getStaticPaths() {
-    const {posts} = await graphcms.request(slugList)
+    const posts = await fetch(`${api}/blog-posts`).then(res => res.json())
     return {
         paths: posts.map(post => ({ params: { slug: post.slug } })),
         fallback: 'blocking',
@@ -40,9 +14,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}) {
-    const slug = params.slug
-    const data = await graphcms.request(gqlQuery, {slug})
-    const post = data.post
+    const slug = params.slug;
+    const post = await fetch(`${api}/blog-posts/${slug}`).then(res => res.json())
     return {
         props: {
             post,
@@ -53,18 +26,45 @@ export async function getStaticProps({params}) {
 
 export default function Blog({post}) {
     Meta.defaultProps = {
-        title: "Nukes n' shit | Blog",
-        keywords: `${post.title}, ${post.tags.toString()}`,
-        description: post.content.markdown,
+        title: post.metaTitle,
+        keywords: `${post.tags}`,
+        description: post.metaDescription,
         topic: post.title,
         type: "blog"
     }    
 
-    /*
-                <style jsx global>
-                {`::-webkit-scrollbar-thumb { background-color: var(--color-main); }`}
-            </style>
-    */
+    function handlePostComment() {
+        const name = document.getElementById("questionNameQ").value;
+        const content = document.getElementById("questionContentQ").value;
+        const email = document.getElementById("questionEmailQ").value;
+        const data = {
+            name: name ? name : "Anonymous",
+            email,
+            content,
+            relationID: post.id,
+        }
+        fetch(`${api}/post-comment`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        }).then(res => {
+            if(res.ok) {
+                const okPopup = document.getElementById("okPopup");
+                okPopup.style.transform = "translateX(0)";
+                setTimeout(() => {
+                    okPopup.style.transform = "translateX(110%)";
+                }, 7000);
+            } else {
+                const errorPopup = document.getElementById("ErrPopup");
+                errorPopup.style.transform = "translateX(0)";
+                setTimeout(() => {
+                    errorPopup.style.transform = "translateX(110%)";
+                }, 7000);
+            }
+        })
+    }
 
     return (
         <>
@@ -77,18 +77,107 @@ export default function Blog({post}) {
                 {`#NavBarWrapper { background-color: rgb(0 0 0 / 80%); box-shadow: 0 0 20px 0 rgba(0,0,0,0.8); }`}
             </style>
             <section id="BlogContentMain">
-                <div>
+                <div className="inner flexcenter">
                     {post !== null ? (
-                        <div className="inner" style={{flexDirection: "column", alignItems: "center"}}>
-                            <div className="title"> {post.title} </div>
-                            <div className="Date"> {post.datePublished} - {post.tags.map((tag, i) => (
-                                <span key={i}>{tag}{i || post.tags.length === 1 ? "":", "}</span>
-                            ))} </div>
-                            <div id="BlogHtml" dangerouslySetInnerHTML={{__html: post.content.html}} ></div>
+                        <div style={{width: "var(--max-width-blog)"}}>
+                            <div>
+                                <div className="title"> {post.title} </div>
+                                <div className="Date"> {post.datePublished} - {post.tags.map((tag, i) => (
+                                    <span key={i}>{tag}{i || post.tags.length === 1 ? "":", "}</span>
+                                ))} </div>
+                                <div id="BlogHtml" dangerouslySetInnerHTML={{__html: post.content}} ></div>
+                            </div>
+                            {post.comments.length > 0 ? ( // comments
+                                <>
+                                <div className="QnA">Comments ({post.comments.length})</div>
+                                <div id="questions">
+                                {post.comments.map((comment, i) => {
+                                    return(
+                                        <div className="question" key={i}>
+                                            <div className="questionHeader">
+                                                <span className="userName">{comment.name}</span> - <span>{comment.content}</span>
+                                                <span className="questionDate"> {comment.createdAt.substring(0, 10)}</span>
+                                            </div>
+                                        </div>)
+                                })}
+                                </div>
+                                </>
+                        ) : null}
+                        <div style={{marginBottom: "var(--pad-4x)"}}>
+                            <div id="questionForm">
+                            <form method="POST" action="javascript:void(0);" onSubmit={() => handlePostComment()}>
+                                <div className="QnA">
+                                    {post.comments.length > 0 ? "Post a comment" : "Be the first to comment!"}
+                                    <button>Submit <FontAwesomeIcon icon={faChevronRight}/> </button>
+                                </div>
+                                <div className="questionFormHeader">
+                                    <input type="text" name="name" placeholder="Name" maxLength={64} id="questionNameQ" style={{width: "calc(50% - 5px)"}}/>
+                                    <input type="email" name="_replyto" required placeholder="Email" maxLength={64} id="questionEmailQ" style={{width: "calc(50% - 5px)"}}/>
+                                </div>
+                                <textarea name="content" placeholder="Content" maxLength={512} required id="questionContentQ"/>
+                            </form>
+                        </div>
+                    </div>
                         </div>
                     ) : ( <div> Loading... </div> )}
+                    <div id="BlogPanel">
+                        <span id="BlogPanelTitle">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</span>
+                        <div className="recommended">
+                            <div className="panelTitle">Recommended</div>
+                            <div className="grayBox">
+                                {post.recommendedPosts.map((post, i) => (
+                                    <div><a href={`/blog/${post.slug}`}>{post.title}</a></div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="author">
+                            <div className="avatar">
+                                <img src={post.author.avatar}></img>
+                            </div>
+                            <div className="authorData">
+                                <div>
+                                    <h5>The Author</h5>
+                                    <h3 className="authorName">{post.author.name}</h3>
+                                </div>
+                                {post.author.socials ? ( // socials
+                                    <div className="socials">
+                                        {post.author.socials.facebook ? ( // facebook
+                                        <>
+                                            <a href={post.author.socials.facebook} target="_blank" rel="noopener noreferrer">
+                                                facebook
+                                            </a> {post.author.socials.website ? " | " : null}
+                                        </>
+                                        ) : null}
+                                        {post.author.socials.website ? ( // website
+                                            <a href={post.author.socials.website} target="_blank" rel="noopener noreferrer">
+                                                website
+                                            </a>
+                                        ) : null}
+                                    </div>
+                                ) : null}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
+            <div>
+                <div className="Popup" id="okPopup">
+                    <div><FontAwesomeIcon icon={faCheck}/></div>
+                    <div>
+                        <h2 className="textCenter" style={{marginTop: "var(--pad-1x)"}}>Success!</h2>
+                        <p>Your comment has been received and is currently under review!</p>
+                    </div>
+                </div>
+                <div className="Popup red" id="ErrPopup">
+                    <div><FontAwesomeIcon icon={faXmark}/></div>
+                    <div>
+                        <h2 className="textCenter" style={{marginTop: "var(--pad-1x)"}}>Error.</h2>
+                        <p>Something went wrong. If you think this is a mistake please contact us - 
+                            <a className="aeffect" style={{color:"var(--color-main)"}} href="mailto:info@nukesnshit.com">info@nukesnshit.com</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </main>
         </>
     )

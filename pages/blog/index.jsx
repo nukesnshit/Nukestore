@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
-import { GraphQLClient, gql } from "graphql-request"
-
 // animate on scroll library
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -10,29 +8,10 @@ import { calcAosTime } from "..";
 
 import Meta from "../../other/meta";
 
-const graphcms = new GraphQLClient(
-    "https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/cld4h09aa002801td1oul5cku/master"
-);
-
-const gqlQuery = gql`
-    {
-        posts(first:90 orderBy: datePublished_DESC){
-            title
-            slug
-            datePublished
-            tags
-            coverPhoto {url(
-                transformation: {
-                    image: { resize: { width: 600, height: 600, fit: clip } }
-                }
-            )}
-            author { name }
-        }
-    }
-`;
+const api = "https://nukesnshit.ignuxas.com/api";
 
 export async function getStaticProps(){
-    const {posts} = await graphcms.request(gqlQuery)
+    const posts = await fetch(`${api}/blog-posts`).then(res => res.json())
     return {
         props: {
             posts,
@@ -42,10 +21,9 @@ export async function getStaticProps(){
 }
 
 export default function Blog({posts}) {
-    
     Meta.defaultProps = {
         title: "Nukes n' shit | Blog",
-        keywords: ["Bunker", 'USSR', 'abandoned', 'urbex', 'fallout shelter', 'restoration', 'military', 'urban exploration', 'nuclear shelter', 'nuclear', 'atomic bomb', 'secret bunker', 'soviet bunker', 'soviet military'],
+        keywords: ["Bunker", 'USSR', 'Abandoned'],
         description: "Documentation of historically significant locations.",
         topic: "Exploration",
         type: "blog"
@@ -54,7 +32,7 @@ export default function Blog({posts}) {
     const [activeTag, setActiveTag] = useState("All")
     const [sortedPosts, setPosts] = useState([])
 
-    const tags = ["All", "Bunkers", "Abandoned", "Industrial", "Restoration"]
+    const tags = ["All", "Bunkers", "Abandoned", "Archive", "Restoration", "News", "Other"]
 
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
@@ -97,11 +75,11 @@ export default function Blog({posts}) {
                                     <div className="itemInner">
                                         <Link href={`/blog/${post.slug}`}>
                                             <div className="imgContainer">
-                                                <img src={post.coverPhoto.url} alt="" />
+                                                <img src={post.coverPhoto} alt="" />
                                             </div>
                                         </Link>
                                         <div className="textContainer">
-                                            <p className="dateName"><span>{post.datePublished}</span><span className="rightText">{post.author.name}</span></p>
+                                            <p className="dateName"><span>{post.datePublished}</span><span className="rightText">{post.authorName}</span></p>
                                             <Link href={`/blog/${post.slug}`}>
                                                 <h2>{post.title}</h2>
                                             </Link>

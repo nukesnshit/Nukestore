@@ -10,7 +10,6 @@
     text-align: left;
     padding: var(--pad-5x) 0;
     font-size: var(--fz-s);
-    width: var(--max-width-blog);
 }
     #BlogHtml .image{
         display: grid;
@@ -29,9 +28,9 @@
         border-radius: var(--border-radius-small);
         box-shadow: 0 0 5px black;
     }
-    #BlogHtml p{
-        padding: var(--pad-1x) 0;
-    }
+    #BlogHtml p{padding: var(--pad-1x) 0;}
+    #BlogHtml ul{margin-left: var(--pad-2x);}
+    #BlogHtml ol{margin-left: var(--pad-2x);}
     figcaption{
         font-size: var(--fz-xs);
         font-style: italic;

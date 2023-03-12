@@ -1,5 +1,8 @@
+/*
 import { useEffect, useState } from "react"
 import Link from "next/link"
+
+import { GraphQLClient, gql } from "graphql-request"
 
 // animate on scroll library
 import AOS from 'aos';
@@ -8,10 +11,25 @@ import { calcAosTime } from "..";
 
 import Meta from "../../other/meta";
 
-const api = "https://nukesnshit.ignuxas.com/api";
+const gqlQuery = gql`
+    {
+        posts(first:90 orderBy: datePublished_DESC){
+            title
+            slug
+            datePublished
+            tags
+            coverPhoto {url(
+                transformation: {
+                    image: { resize: { width: 600, height: 600, fit: clip } }
+                }
+            )}
+            author { name }
+        }
+    }
+`;
 
 export async function getStaticProps(){
-    const posts = await fetch(`${api}/blog-posts`).then(res => res.json())
+    const {posts} = await graphcms.request(gqlQuery)
     return {
         props: {
             posts,
@@ -21,9 +39,10 @@ export async function getStaticProps(){
 }
 
 export default function Blog({posts}) {
+    
     Meta.defaultProps = {
         title: "Nukes n' shit | Blog",
-        keywords: ["Bunker", 'USSR', 'Abandoned'],
+        keywords: ["Bunker", 'USSR', 'abandoned', 'urbex', 'fallout shelter', 'restoration', 'military', 'urban exploration', 'nuclear shelter', 'nuclear', 'atomic bomb', 'secret bunker', 'soviet bunker', 'soviet military'],
         description: "Documentation of historically significant locations.",
         topic: "Exploration",
         type: "blog"
@@ -32,7 +51,7 @@ export default function Blog({posts}) {
     const [activeTag, setActiveTag] = useState("All")
     const [sortedPosts, setPosts] = useState([])
 
-    const tags = ["All", "Bunkers", "Abandoned", "Archive", "Restoration", "News", "Other"]
+    const tags = ["All", "Bunkers", "Abandoned", "Industrial", "Restoration"]
 
     // Filter posts by tag
     useEffect (() => { AOS.init() }, [])
@@ -73,14 +92,14 @@ export default function Blog({posts}) {
                             return (
                                 <div key={i} className="itemWrapper" style={{animationDelay: `${calcAosTime(i, 0.5, !i) * 0.1}s`}}>
                                     <div className="itemInner">
-                                        <Link href={`/blog-new/${post.slug}`}>
+                                        <Link href={`/blog/${post.slug}`}>
                                             <div className="imgContainer">
-                                                <img src={post.coverPhoto} alt="" />
+                                                <img src={post.coverPhoto.url} alt="" />
                                             </div>
                                         </Link>
                                         <div className="textContainer">
-                                            <p className="dateName"><span>{post.datePublished}</span><span className="rightText">{post.authorName}</span></p>
-                                            <Link href={`/blog-new/${post.slug}`}>
+                                            <p className="dateName"><span>{post.datePublished}</span><span className="rightText">{post.author.name}</span></p>
+                                            <Link href={`/blog/${post.slug}`}>
                                                 <h2>{post.title}</h2>
                                             </Link>
                                         </div>
@@ -94,4 +113,4 @@ export default function Blog({posts}) {
         </main>
         </>
     )
-}
+}*/
