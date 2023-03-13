@@ -3,6 +3,8 @@ import Meta from "../../other/meta";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
+import { useEffect } from "react";
+
 const api = "https://nukesnshit.ignuxas.com/api";
 
 export async function getStaticPaths() {
@@ -16,7 +18,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({params}) {
     const slug = params.slug;
     const post = await fetch(`${api}/blog-posts/${slug}`).then(res => res.json())
-    console.log(post)
     return {
         props: {
             post,
@@ -65,6 +66,57 @@ export default function Blog({post}) {
                 }, 7000);
             }
         })
+    }
+
+    useEffect(() => {
+        const zoomImgContainer = document.getElementById("imgZoomContainer");
+        const zoomImgExit = document.getElementById("zoomImgExit");
+        const blogHTML = document.getElementById("BlogHtml");
+        const images = blogHTML.getElementsByTagName("img");
+        const zoomImg = document.getElementById("zoomImg");
+
+        for (let i = 0; i < images.length; i++) { // add click event to all images
+            images[i].addEventListener("click", () => {
+                imageZoom(images[i]);
+            })
+        }
+
+        zoomImgExit.addEventListener("click", () => {
+            zoomImgContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
+        })
+
+        zoomImg.addEventListener("click", (e) => {
+            if(zoomImg.style.transform === "scale(1)") { // zoom into zoomImg
+                const rect = zoomImg.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                zoomImg.style.transformOrigin = `${x}px ${y}px`;
+                zoomImg.style.cursor = "zoom-out";
+                zoomImg.style.transform = "scale(2)";
+                zoomImg.classList.add("zoomed");
+            } else { // zoom out of zoomImg
+                zoomImg.style.cursor = "zoom-in";
+                zoomImg.style.transform = "scale(1)";
+                zoomImg.style.transformOrigin = `unset`;
+            }
+        })
+    }, [])
+
+    /*--------------------
+    Image zoom
+    -------------------*/
+
+    function imageZoom(image){
+        const zoomImgContainer = document.getElementById("imgZoomContainer");
+        const zoomImg = document.getElementById("zoomImg");
+        const imgSrc = image.src;
+
+        zoomImg.src = "";
+        zoomImg.src = imgSrc;
+        zoomImg.style.transformOrigin = `unset`;
+        zoomImg.style.transform = "scale(1)";
+        zoomImg.style.cursor = "zoom-in";
+        zoomImgContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
     }
 
     return (
@@ -178,6 +230,10 @@ export default function Blog({post}) {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div id="imgZoomContainer" className="flexcenter">
+                <img id="zoomImg"></img>
+                <div id="zoomImgExit"></div>
             </div>
         </main>
         </>

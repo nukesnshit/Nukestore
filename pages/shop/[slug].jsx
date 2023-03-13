@@ -58,24 +58,24 @@ export default function ProductPage({product}) {
         });
 
         const swiper = new Swiper('.imgSwiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        mousewheel: true,
-        keyboardControl: true,
+            // Optional parameters
+            direction: 'horizontal',
+            mousewheel: true,
+            keyboardControl: true,
 
-        autoplay: {
-            delay: 1,
-            disableOnInteraction: true,
-        },
+            autoplay: {
+                delay: 1,
+                disableOnInteraction: true,
+            },
 
-        thumbs: {
-            swiper: swiperThumb,
-        },
+            thumbs: {
+                swiper: swiperThumb,
+            },
 
-        zoom: {
-            maxRatio: 2.2,
-            minRatio: 1
-        },
+            zoom: {
+                maxRatio: 2.2,
+                minRatio: 1
+            },
         });
     }, []);
 
