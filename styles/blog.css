@@ -55,6 +55,7 @@ iframe{
 #BlogContentMain .smallImg{width: 70%;}
 
 #BlogContentMain .title{margin-bottom: var(--pad-2x);}
+#BlogContent .title{margin-bottom: var(--pad-2x);}
 
 .author.mobile{display: none; margin-bottom: var(--pad-2x);}
 .author{

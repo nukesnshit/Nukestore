@@ -204,6 +204,7 @@ export default function ProductPage({product}) {
                         `}>
                             <button id="ContactBtn">Contact Seller</button>
                         </a>
+                        <p style={{fontSize: "var(--fz-s)", color: "#555"}}>*Tip: Double tap the image to zoom in ;)</p>
                     </div>
                 </div>
 
