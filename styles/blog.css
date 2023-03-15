@@ -8,7 +8,7 @@
 
 #BlogHtml{
     text-align: left;
-    padding: var(--pad-5x) 0;
+    padding: var(--pad-3x) 0;
     font-size: var(--fz-s);
 }
     #BlogHtml .image{
@@ -54,10 +54,9 @@ iframe{
 #BlogContentMain .smallerImg{width: 80%;}
 #BlogContentMain .smallImg{width: 70%;}
 
-#BlogContent .title{
-    margin-bottom: var(--pad-2x);
-}
+#BlogContentMain .title{margin-bottom: var(--pad-2x);}
 
+.author.mobile{display: none; margin-bottom: var(--pad-2x);}
 .author{
     display: flex;
     align-items: center;

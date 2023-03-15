@@ -156,6 +156,33 @@ export default function Blog({post}) {
                                 </div>
                                 </>
                         ) : null}
+                        <div className="author mobile">
+                            <div className="avatar">
+                                <img src={post.author.avatar}></img>
+                            </div>
+                            <div className="authorData textCenter" style={{width: "100%"}}>
+                                <div>
+                                    <h5>The Author</h5>
+                                    <h3 className="authorName">{post.author.name}</h3>
+                                </div>
+                                {post.author.socials ? ( // socials
+                                    <div className="socials">
+                                        {post.author.socials.facebook ? ( // facebook
+                                        <>
+                                            <a href={post.author.socials.facebook} target="_blank" rel="noopener noreferrer">
+                                                facebook
+                                            </a> {post.author.socials.website ? " | " : null}
+                                        </>
+                                        ) : null}
+                                        {post.author.socials.website ? ( // website
+                                            <a href={post.author.socials.website} target="_blank" rel="noopener noreferrer">
+                                                website
+                                            </a>
+                                        ) : null}
+                                    </div>
+                                ) : null}
+                            </div>
+                        </div>
                         <div style={{marginBottom: "var(--pad-4x)"}}>
                             <div id="questionForm">
                             <form method="POST" action="javascript:void(0);" onSubmit={() => handlePostComment()}>
@@ -169,9 +196,9 @@ export default function Blog({post}) {
                                 </div>
                                 <textarea name="content" placeholder="Content" maxLength={512} required id="questionContentQ"/>
                             </form>
+                            </div>
                         </div>
                     </div>
-                        </div>
                     ) : ( <div> Loading... </div> )}
                     <div id="BlogPanel">
                         <span id="BlogPanelTitle">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</span>

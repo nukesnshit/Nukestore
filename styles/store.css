@@ -151,12 +151,6 @@
 .itemAnim {animation: fade-down-unscuff 0.4s ease forwards;}
 
 
-.QnA{
-    text-align: left;
-    padding: var(--pad-2x);
-    margin-top: var(--pad-2x);
-}
-
 .questionContainer.mobile {display: none;}
 
 #questions{
@@ -198,7 +192,6 @@
 #questionForm{
     display: flex;
     flex-direction: column;
-    margin: 0 var(--pad-1x);
 }
     .questionFormHeader{ display: flex; justify-content: space-between; }
     .questionFormHeader input{ 
@@ -250,10 +243,10 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 0 var(--pad-1x);
-        margin-bottom: var(--pad-2x);
+        margin: var(--pad-2x) 0;
+        text-align: left;
     }
-
+    #ItemSection .QnA{padding: 0 var(--pad-1x);}
 
 @keyframes fade-down-unscuff {
     0% {
@@ -281,6 +274,10 @@
     .swiper-zoom-container{max-height: 360px;}
     .questionContainer.mobile{display: block;}
     .questionContainer.desktop{display: none;}
+    .author.mobile{display: flex;}
+    .author.desktop{display: none;}
+    .questionContainer {flex-direction: column;}
+    #BlogHtml{padding-top: var(--pad-3x);}
 }
 
 @media only screen and (max-width: 970px) {
