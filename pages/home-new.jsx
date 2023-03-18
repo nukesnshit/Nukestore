@@ -38,10 +38,7 @@ export default function home() {
       //renderer.toneMapping = THREE.ReinhardToneMapping;
       //console.log(window.innerWidth);
     };
-    //---
-    
-    document.body.prepend( renderer.domElement );
-    
+
     window.addEventListener('resize', onWindowResize, false);
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
