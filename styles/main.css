@@ -323,6 +323,31 @@ section{
     animation: asdd 3s linear infinite;
 }
 
+#Nukesnshit{
+    font-family: var(--font-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+}
+#Nukesnshit p{
+    margin-top: var(--pad-1x);
+    color: #929292;
+}
+#ThreeJsContainer{
+    height: 100vh;
+    width: 100vw;
+}
+#ThreeJsCanvas{
+    position: absolute;
+}
+
 @keyframes asdd {
     0% {
         text-shadow: 0 0 8px rgba(0, 0, 0, .6);
