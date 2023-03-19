@@ -395,4 +395,6 @@ section{
         gap: 10px;
     }
     #Contact p{width: 100%;}
+    .container {padding-bottom: 100px;}
+    #Contact {padding-bottom: 100px;}
 }

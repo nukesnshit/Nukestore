@@ -12,7 +12,7 @@ import { faHandHoldingDollar
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import Meta from '../other/meta'
+import Head from "next/head";
 
 var currentTime = 0
 export function calcAosTime(index, delay = 50, reset = false){
@@ -21,13 +21,7 @@ export function calcAosTime(index, delay = 50, reset = false){
   return currentTime
 }
 
-export default function home() {
-  Meta.defaultProps = {
-    title: "Nukes n' shit",
-    keywords: 'USSR, abandoned, bunker, dosimeter, gasmask, restoration, nuclear, radioactive',
-    description:
-      "We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques, and documentation of historically significant locations. Our goal is to ensure that the past is preserved for future generations and made accessible to all.",
-  };
+export default function Home() {
   useEffect(() => {
     var mobile = window.innerWidth < 800 ? true : false;
 
@@ -297,6 +291,16 @@ export default function home() {
     }, []);
     
   return (
+    <>
+    <Head>
+      <meta name="description" content="We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques, and documentation of historically significant locations. Our goal is to ensure that the past is preserved for future generations and made accessible to all." />
+      <meta name="keywords" content="USSR, abandoned, bunker, dosimeter, gasmask, restoration, nuclear, radioactive"/>
+      <meta name="page-topic" content="Preserving the past" />
+      <meta name="page-type" content="website" />
+      <meta rel="icon" href="/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Nukes n' shit</title>
+    </Head>
     <main>
       <div>
         <div id="ThreeJsContainer">
@@ -365,6 +369,6 @@ export default function home() {
             </div>
           </div>
         </section>
-    </main>
+    </main></>
   );
 }

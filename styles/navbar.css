@@ -41,6 +41,7 @@
         text-decoration: none;
         color: white;
         transition: all .5s ease;
+        font-weight: 600;
         padding: 10px;
     }
         #NavBar a.active{color: var(--color-main);}

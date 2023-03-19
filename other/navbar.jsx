@@ -11,7 +11,7 @@ export function ul(index, calledFromScroll = false) {
     const navUnderline = document.getElementById("underline");
 
     var offset = (rect.left - (window.innerWidth / 2)) + el.offsetWidth / 2;
-    offset = offset > 0 ? offset + 18 : offset + 18;
+    offset = offset + 18
 
     navUnderline.style.transform = `translateX(${offset}px)`;
     links.forEach(link => { link.classList.remove("active") })
