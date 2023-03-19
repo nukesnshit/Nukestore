@@ -12,6 +12,8 @@ import { faHandHoldingDollar
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import Meta from '../other/meta'
+
 var currentTime = 0
 export function calcAosTime(index, delay = 50, reset = false){
   if(reset){currentTime = 0; return 0}
@@ -20,6 +22,12 @@ export function calcAosTime(index, delay = 50, reset = false){
 }
 
 export default function home() {
+  Meta.defaultProps = {
+    title: "Nukes n' shit",
+    keywords: 'USSR, abandoned, bunker, dosimeter, gasmask, restoration, nuclear, radioactive',
+    description:
+      "We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques, and documentation of historically significant locations. Our goal is to ensure that the past is preserved for future generations and made accessible to all.",
+  };
   useEffect(() => {
     var mobile = window.innerWidth < 800 ? true : false;
 
