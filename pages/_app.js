@@ -6,11 +6,12 @@ import '../styles/store.css'
 import '../styles/footer.css'
 import Footer from '../other/footer'
 import NavBar from '../other/navbar'
-
+import ThreeBackground from '../other/background'
 
 export default function App({ Component, pageProps }) {
   return(<>
     <NavBar />
+    <ThreeBackground/>
     <Component {...pageProps} />
     <Footer />
   </>)
