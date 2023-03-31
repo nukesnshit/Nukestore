@@ -7,8 +7,7 @@ import 'aos/dist/aos.css';
 import { calcAosTime } from "..";
 
 import Meta from "../../other/meta";
-
-const api = "https://nukesnshit.ignuxas.com/api";
+import { api } from "../index"
 
 export async function getStaticProps(){
     const posts = await fetch(`${api}/blog-posts`).then(res => res.json())

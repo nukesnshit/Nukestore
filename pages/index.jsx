@@ -12,6 +12,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import Head from "next/head";
+import Link from "next/link";
+
+export const api = "https://nukesnshit.ignuxas.com/api";
 
 var currentTime = 0
 export function calcAosTime(index, delay = 50, reset = false){
@@ -20,11 +23,23 @@ export function calcAosTime(index, delay = 50, reset = false){
   return currentTime
 }
 
-export default function Home() {
+export async function getStaticProps(){
+  const products = await fetch(`${api}/products?quantity=4`).then(res => res.json());
+  const blogPosts = await fetch(`${api}/blog-posts?quantity=4`).then(res => res.json());
+  return {
+    props: {
+      products,
+      blogPosts,
+    },
+    revalidate: 300,
+  }
+}
 
+export default function Home({products, blogPosts}) {
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <>
     <Head>
@@ -41,20 +56,20 @@ export default function Home() {
           <div className='inner'>
             <div className='container' id="About">
               <div className='fancyTitle'>
-                <h5 data-aos="fade-down">NUKESNSHIT.COM</h5>
-                <h2 data-aos="fade-down" id="AboutCheck">About us</h2>
+                <h5 data-aos="fade-up">NUKESNSHIT.COM</h5>
+                <h2 data-aos="fade-up" id="AboutCheck">About us</h2>
               </div>
               <div className="flexcenter">
-                <p className='textContent textCenter' data-aos="zoom-in">
+                <p className='textContent textCenter' data-aos="fade-up">
                   We are committed to preserving and restoring historical artifacts through expert restoration work, acquisition and sales of antiques, and documentation of historically significant locations. Our goal is to ensure that the past is preserved for future generations and made accessible to all.
                 </p>
               </div>
             </div>
             <div className='container'>
               <div className='fancyTitle'>
-                <h5 data-aos="fade-down">QUALITIES</h5>
-                <h2 data-aos="fade-down">Why choose us?</h2>
-                <p data-aos="fade-down">Why we are the best in our field</p>
+                <h5 data-aos="fade-up">QUALITIES</h5>
+                <h2 data-aos="fade-up">Why choose us?</h2>
+                <p data-aos="fade-up">Why we are the best in our field</p>
               </div>
               <div className='flexcenter' id="cardContainer">
                 <div className='card' data-aos="zoom-in" data-aos-delay={calcAosTime(0, 50, true)}>
@@ -87,14 +102,69 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <div className='container flexcenter' style={{flexDirection:"column"}}>
+              <div className='fancyTitle'>
+                <h5 data-aos="fade-up">PRODUCTS</h5>
+                <h2 data-aos="fade-up">Featured products</h2>
+                <p data-aos="fade-up">A selection of our products</p>
+              </div>
+              <div className="postContainer" id="itemContainer">
+                  {  typeof products !== undefined ? products.map((item, i) => {
+                      return (
+                          <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(i, 50, !i)} style={{pointerEvents: "all"}}>
+                              <div className="itemInner">
+                                  <Link href={`/shop/${item.slug}`}>
+                                      <div className="imgContainer">
+                                          <div className="itemPrice">{item.price} €</div>
+                                          <img src={item.coverPhoto} alt="" />
+                                      </div>
+                                  </Link>
+                                  <div className="textContainer">
+                                      <p className="dateName"><span>{item.condition === "New_old_stock" ? "New Old Stock":"Used"}</span><span className="textCenter">Quantity: {item.quantity}</span></p>
+                                      <Link href={`/shop/${item.slug}`}>
+                                          <h2>{item.title}</h2>
+                                      </Link>
+                                  </div>
+                              </div>
+                          </div>
+                      )
+                  }): <p>No posts found</p>}
+              </div>
+            </div>
+            <div className='container flexcenter' style={{flexDirection:"column"}}>
+              <div className='fancyTitle'>
+                <h5 data-aos="fade-up">BLOG</h5>
+                <h2 data-aos="fade-up">Latest blog posts</h2>
+                <p data-aos="fade-up">Latest blog posts from some of our most experienced explorers</p>
+              </div>
+              <div className="postContainer">
+                {typeof blogPosts !== undefined ? blogPosts.map((post, i) => (
+                    <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(i, 50, !i)} style={{pointerEvents: "all"}}>
+                        <div className="itemInner">
+                            <Link href={`/blog/${post.slug}`}>
+                                <div className="imgContainer">
+                                    <img src={post.coverPhoto} alt="" />
+                                </div>
+                            </Link>
+                            <div className="textContainer">
+                                <p className="dateName"><span>{post.datePublished}</span><span className="rightText">{post.authorName}</span></p>
+                                <Link href={`/blog/${post.slug}`}>
+                                    <h2>{post.title}</h2>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )) : <p>The website is having some issues, we are working on a fix!</p>}
+              </div>
+            </div>
             <div className='container flexcenter' id='Contact'>
               <div className='fancyTitle'>
-                <h5 data-aos="fade-down">CONTACT</h5>
-                <h2 data-aos="fade-down">Get in touch</h2>
+                <h5 data-aos="fade-up">CONTACT</h5>
+                <h2 data-aos="fade-up">Get in touch</h2>
               </div>
-              <p className="centerText" id="ContactCheck" data-aos="zoom-in" style={{fontSize: "var(--fz-md)"}}>My inbox is always open, whether you have a question, offer or just want to say hi, I’ll try my best to get back to you!</p>
-              <div style={{margin: "var(--pad-4x) 0"}} data-aos="zoom-in"><a href='mailto:info@nukesnshit.com'><button>Contact</button></a></div>
-              <a className="aeffect" href="mailto:info@nukesnshit.com" data-aos="zoom-in" style={{color: "var(--color-main)", fontSize: "16px"}}>info@nukesnshit.com</a>
+              <p className="centerText" id="ContactCheck" data-aos="fade-up" style={{fontSize: "var(--fz-md)"}}>My inbox is always open, whether you have a question, offer or just want to say hi, I’ll try my best to get back to you!</p>
+              <div style={{margin: "var(--pad-4x) 0"}} data-aos="fade-up"><a href='mailto:info@nukesnshit.com'><button>Contact</button></a></div>
+              <a className="aeffect" href="mailto:info@nukesnshit.com" data-aos="fade-up" style={{color: "var(--color-main)", fontSize: "16px"}}>info@nukesnshit.com</a>
             </div>
           </div>
         </section>

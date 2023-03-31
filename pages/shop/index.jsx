@@ -8,7 +8,7 @@ import { calcAosTime } from "..";
 
 import Meta from "../../other/meta";
 
-const api = "https://nukesnshit.ignuxas.com/api";
+import { api } from "..";
 
 export async function getStaticProps(){
     const products = await fetch(`${api}/products`).then(res => res.json())
@@ -100,8 +100,6 @@ export default function Shop({products}) {
                             )
                         }): <p>No posts found</p>}
                     </div>
-                    
-
                 </div>
             </section>
         </main>

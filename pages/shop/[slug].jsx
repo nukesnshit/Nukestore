@@ -11,7 +11,7 @@ import { faChevronRight, faCheck, faXmark } from '@fortawesome/free-solid-svg-ic
 
 import Meta from "../../other/meta";
 
-const api = "https://nukesnshit.ignuxas.com/api";
+import { api } from "..";
 
 export async function getStaticPaths() {
     const slugList = await fetch(`${api}/products`).then(res => res.json())

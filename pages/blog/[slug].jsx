@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { useEffect } from "react";
-
-const api = "https://nukesnshit.ignuxas.com/api";
+import { api } from "..";
 
 export async function getStaticPaths() {
     const posts = await fetch(`${api}/blog-posts`).then(res => res.json())

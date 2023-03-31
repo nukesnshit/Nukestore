@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 var currentLink = "";
 var scrollCheckDisabled = false;
@@ -24,6 +25,8 @@ export function ul(index, calledFromScroll = false) {
 }
 
 export default function NavBar() {
+    const router = useRouter();
+
     var navBar = null;
     var navUnderline = null;
 
@@ -49,7 +52,7 @@ export default function NavBar() {
     
         // get active link and set underline
         ul(active);
-    }, [])
+    }, [router.asPath])
 
     function scrollFunction() {
         // Contact / About Section checker
