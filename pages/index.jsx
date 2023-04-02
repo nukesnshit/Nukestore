@@ -24,7 +24,7 @@ export function calcAosTime(index, delay = 50, reset = false){
 }
 
 export async function getStaticProps(){
-  const products = await fetch(`${api}/products?quantity=4`).then(res => res.json());
+  const products = await fetch(`${api}/products?quantity=8`).then(res => res.json());
   const blogPosts = await fetch(`${api}/blog-posts?quantity=4`).then(res => res.json());
   return {
     props: {
@@ -110,8 +110,9 @@ export default function Home({products, blogPosts}) {
               </div>
               <div className="postContainer" id="itemContainer">
                   {  typeof products !== undefined ? products.map((item, i) => {
+                      const rowIndex = i > 3 ? i - 3 : i // 4 is the number of items per row
                       return (
-                          <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(i, 50, !i)} style={{pointerEvents: "all"}}>
+                          <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(rowIndex, 50, !rowIndex)} style={{pointerEvents: "all"}}>
                               <div className="itemInner">
                                   <Link href={`/shop/${item.slug}`}>
                                       <div className="imgContainer">
@@ -128,18 +129,20 @@ export default function Home({products, blogPosts}) {
                               </div>
                           </div>
                       )
-                  }): <p>No posts found</p>}
+                  }): <p>The website is having some issues, we are working on a fix!</p>}
               </div>
             </div>
             <div className='container flexcenter' style={{flexDirection:"column"}}>
               <div className='fancyTitle'>
-                <h5 data-aos="fade-up">BLOG</h5>
+                <h5 data-aos="fade-up">BLOG POSTS</h5>
                 <h2 data-aos="fade-up">Latest blog posts</h2>
                 <p data-aos="fade-up">Latest blog posts from some of our most experienced explorers</p>
               </div>
               <div className="postContainer">
-                {typeof blogPosts !== undefined ? blogPosts.map((post, i) => (
-                    <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(i, 50, !i)} style={{pointerEvents: "all"}}>
+                {typeof blogPosts !== undefined ? blogPosts.map((post, i) => {
+                    const rowIndex = i > 3 ? i - 3 : i // 4 is the number of items per row
+                    return (
+                    <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(rowIndex, 50, !rowIndex)} style={{pointerEvents: "all"}}>
                         <div className="itemInner">
                             <Link href={`/blog/${post.slug}`}>
                                 <div className="imgContainer">
@@ -154,7 +157,7 @@ export default function Home({products, blogPosts}) {
                             </div>
                         </div>
                     </div>
-                )) : <p>The website is having some issues, we are working on a fix!</p>}
+                  )}) : <p>The website is having some issues, we are working on a fix!</p>}
               </div>
             </div>
             <div className='container flexcenter' id='Contact'>
