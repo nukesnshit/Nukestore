@@ -11,7 +11,7 @@ import Meta from "../../other/meta";
 import { api } from "..";
 
 export async function getStaticProps(){
-    const products = await fetch(`${api}/products`).then(res => res.json())
+    const products = await fetch(`${api}/products`).then(res => res.ok ? res.json(): [])
     return {
         props: {
             products,
@@ -77,7 +77,7 @@ export default function Shop({products}) {
                         })}
                     </div>
                     <div className="postContainer" id="itemContainer">
-                        {  typeof sortedItems !== undefined ? sortedItems.map((item, i) => {
+                        {products.length ? sortedItems.map((item, i) => {
                             return (
                                 i < productsPerPage * activePage && i >= productsPerPage * (activePage - 1) ? (
                                 <div key={i} className="itemWrapper" style={{animationDelay: `${calcAosTime(i, 0.5, !i) * 0.1}s`}}>
@@ -98,7 +98,7 @@ export default function Shop({products}) {
                                 </div>
                                 ) : null
                             )
-                        }): <p>No posts found</p>}
+                        }): <p>The website is having some issues, we are working on a fix!</p>}
                     </div>
                 </div>
             </section>

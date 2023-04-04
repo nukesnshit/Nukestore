@@ -14,7 +14,7 @@ import Meta from "../../other/meta";
 import { api } from "..";
 
 export async function getStaticPaths() {
-    const slugList = await fetch(`${api}/products`).then(res => res.json())
+    const slugList = await fetch(`${api}/products`).then(res => res.ok ? res.json(): [])
 
     return {
         paths: slugList.map(product => ({ params: { slug: product.slug } })),
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}) {
     const slug = params.slug
-    const product = await fetch(`${api}/products/${slug}`).then(res => res.json())
+    const product = await fetch(`${api}/products/${slug}`).then(res => res.ok ? res.json(): {})
     return {
         props: {
             product,

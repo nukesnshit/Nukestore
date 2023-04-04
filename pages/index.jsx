@@ -24,8 +24,8 @@ export function calcAosTime(index, delay = 50, reset = false){
 }
 
 export async function getStaticProps(){
-  const products = await fetch(`${api}/products?quantity=8`).then(res => res.json());
-  const blogPosts = await fetch(`${api}/blog-posts?quantity=4`).then(res => res.json());
+  const products = await fetch(`${api}/products?quantity=8`).then(res => res.ok ? res.json(): []);
+  const blogPosts = await fetch(`${api}/blog-posts?quantity=4`).then(res => res.ok ? res.json(): []);
   return {
     props: {
       products,
@@ -109,7 +109,7 @@ export default function Home({products, blogPosts}) {
                 <p data-aos="fade-up">A selection of our products</p>
               </div>
               <div className="postContainer" id="itemContainer">
-                  {  typeof products !== undefined ? products.map((item, i) => {
+                  {products.length ? products.map((item, i) => {
                       const rowIndex = i > 3 ? i - 3 : i // 4 is the number of items per row
                       return (
                           <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(rowIndex, 50, !rowIndex)} style={{pointerEvents: "all"}}>
@@ -139,7 +139,7 @@ export default function Home({products, blogPosts}) {
                 <p data-aos="fade-up">Latest blog posts from some of our most experienced explorers</p>
               </div>
               <div className="postContainer">
-                {typeof blogPosts !== undefined ? blogPosts.map((post, i) => {
+                {blogPosts.length ? blogPosts.map((post, i) => {
                     const rowIndex = i > 3 ? i - 3 : i // 4 is the number of items per row
                     return (
                     <div key={i} className="itemWrapper" data-aos="zoom-in" data-aos-delay={calcAosTime(rowIndex, 50, !rowIndex)} style={{pointerEvents: "all"}}>

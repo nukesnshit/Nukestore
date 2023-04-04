@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { api } from "..";
 
 export async function getStaticPaths() {
-    const posts = await fetch(`${api}/blog-posts`).then(res => res.json())
+    const posts = await fetch(`${api}/blog-posts`).then(res => res.ok ? res.json(): [])
     return {
         paths: posts.map(post => ({ params: { slug: post.slug } })),
         fallback: 'blocking',
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}) {
     const slug = params.slug;
-    const post = await fetch(`${api}/blog-posts/${slug}`).then(res => res.json())
+    const post = await fetch(`${api}/blog-posts/${slug}`).then(res => res.ok ? res.json(): {})
     return {
         props: {
             post,

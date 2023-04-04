@@ -10,7 +10,7 @@ import Meta from "../../other/meta";
 import { api } from "../index"
 
 export async function getStaticProps(){
-    const posts = await fetch(`${api}/blog-posts`).then(res => res.json())
+    const posts = await fetch(`${api}/blog-posts`).then(res => res.ok ? res.json(): [])
     return {
         props: {
             posts,
@@ -68,7 +68,7 @@ export default function Blog({posts}) {
                         })}
                     </div>
                     <div className="postContainer">
-                        {  typeof sortedPosts !== undefined ? sortedPosts.map((post, i) => {
+                        {posts.length ? sortedPosts.map((post, i) => {
                             return (
                                 <div key={i} className="itemWrapper" style={{animationDelay: `${calcAosTime(i, 0.5, !i) * 0.1}s`}}>
                                     <div className="itemInner">
@@ -86,7 +86,7 @@ export default function Blog({posts}) {
                                     </div>
                                 </div>
                             )
-                        }): <p>No posts found</p>}
+                        }): <p>The website is having some issues, we are working on a fix!</p>}
                     </div>
                 </div>
             </section>
