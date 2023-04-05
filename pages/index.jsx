@@ -24,7 +24,7 @@ export function calcAosTime(index, delay = 50, reset = false){
 }
 
 export async function getStaticProps(){
-  const products = await fetch(`${api}/products?quantity=8`).then(res => res.ok ? res.json(): []);
+  const products = await fetch(`${api}/products?quantity=8&sort=createdAt:desc`).then(res => res.ok ? res.json(): []);
   const blogPosts = await fetch(`${api}/blog-posts?quantity=4`).then(res => res.ok ? res.json(): []);
   return {
     props: {
@@ -105,8 +105,8 @@ export default function Home({products, blogPosts}) {
             <div className='container flexcenter' style={{flexDirection:"column"}}>
               <div className='fancyTitle'>
                 <h5 data-aos="fade-up">PRODUCTS</h5>
-                <h2 data-aos="fade-up">Featured products</h2>
-                <p data-aos="fade-up">A selection of our products</p>
+                <h2 data-aos="fade-up">Newest products</h2>
+                <p data-aos="fade-up">Recently uploaded products</p>
               </div>
               <div className="postContainer" id="itemContainer">
                   {products.length ? products.map((item, i) => {
