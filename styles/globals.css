@@ -147,6 +147,21 @@ a{
 .centerText{text-align: center;}
 .rightText{text-align: right;}
 
+.table{
+  width: 100% !important;
+}
+  .table table{
+    width: 100%;
+  }
+  .table td{
+    padding: 0 var(--pad-1x);
+    border: solid 1px white;
+  }
+  .table th{
+    border: solid 2px white;
+    padding: 5px 0;
+  }
+
 .Popup{
   display: flex;
   position: fixed;

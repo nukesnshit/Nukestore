@@ -129,7 +129,7 @@ export default function Home({products, blogPosts}) {
                               </div>
                           </div>
                       )
-                  }): <p>The website is having some issues, we are working on a fix!</p>}
+                  }): <p data-aos="fade-up">The website is having some issues, we are working on a fix!</p>}
               </div>
             </div>
             <div className='container flexcenter' style={{flexDirection:"column"}}>
@@ -157,7 +157,7 @@ export default function Home({products, blogPosts}) {
                             </div>
                         </div>
                     </div>
-                  )}) : <p>The website is having some issues, we are working on a fix!</p>}
+                  )}) : <p data-aos="fade-up">The website is having some issues, we are working on a fix!</p>}
               </div>
             </div>
             <div className='container flexcenter' id='Contact'>
