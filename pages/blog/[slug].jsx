@@ -201,6 +201,7 @@ export default function Blog({post}) {
                     ) : ( <div> Loading... </div> )}
                     <div id="BlogPanel">
                         <span id="BlogPanelTitle">Nukes <span style={{color: "var(--color-main)"}}>n'</span> shit</span>
+                        {post.recommendedPosts.length > 0 ? (
                         <div className="recommended">
                             <div className="panelTitle">Recommended</div>
                             <div className="grayBox">
@@ -209,6 +210,7 @@ export default function Blog({post}) {
                                 ))}
                             </div>
                         </div>
+                        ) : (null)}
                         <div className="author">
                             <div className="avatar">
                                 <img src={post.author.avatar}></img>

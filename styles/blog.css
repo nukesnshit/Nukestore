@@ -20,6 +20,7 @@
         display: block;
         max-width: 100%;
         max-height: 70vh;
+        min-height: -moz-fit-content;
         min-height: fit-content;
         cursor: pointer;
         width: auto;
