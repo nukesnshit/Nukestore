@@ -19,7 +19,6 @@ export default function Footer () {
                 </div>
             </div>
             <div id="copyright">
-                Website Designed and Built by <a className="aeffect" href="https://ignuxas.com/">Ignas Mikolaitis</a> <br />
                 <p>2022 © Nukesnshit.com</p></div>
         </footer>
     )
