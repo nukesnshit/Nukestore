@@ -117,6 +117,9 @@
         margin-bottom: var(--pad-1x);
     }
     #ItemDescription{ font-size: var(--fz-m); }
+        #ItemDescription ol{ padding-left: var(--pad-3x)}
+        #ItemDescription ol li{ padding: 2px 0;}
+        #ItemDescription ol li::marker{ color: var(--color-main);}
         #ItemDescription ul{ padding-left: var(--pad-2x);}
         #ItemDescription p{padding: var(--pad-1x) 0;}
         #ItemDescription a {

@@ -207,7 +207,7 @@ a{
   .Popup.red svg{color: red;}
 
 ::-webkit-scrollbar{
-  width: 14px;
+  width: 0px;
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {

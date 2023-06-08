@@ -136,6 +136,7 @@ section{
     }
 
 .textContent{font-size: var(--fz-m); width: 70%;}
+.textContainer{font-size: var(--fz-sm);}
 
 .card{
     position: relative;

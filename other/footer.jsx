@@ -18,8 +18,8 @@ export default function Footer () {
                     <Link className="NavBtn" href="/#Contact" onClick={() => ul(4)}>Contact</Link>
                 </div>
             </div>
-            <div style={{textAlign:"center", paddingTop:"var(--pad-3x)"}}>Website designed and built by <a href="https://ignuxas.com/" target="_blank" className="aeffect" style={{color:"var(--color-main)"}}>Ignas Mikolaitis</a></div>
             <div id="copyright">
+                Website Designed and Built by <a className="aeffect" href="https://ignuxas.com/">Ignas Mikolaitis</a> <br />
                 <p>2022 © Nukesnshit.com</p></div>
         </footer>
     )
