@@ -242,7 +242,7 @@
     }
     #questionForm button:hover svg{ padding-left: 6px;}
 
-    #questionForm .QnA{
+    .QnA{
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -278,7 +278,7 @@
     .swiper-zoom-container{max-height: 360px;}
     .questionContainer.mobile{display: block;}
     .questionContainer.desktop{display: none;}
-    .author.mobile{display: flex;}
+    .author.mobile{display: flex; margin-top: var(--pad-2x);}
     .author.desktop{display: none;}
     .questionContainer {flex-direction: column;}
     #BlogHtml{padding-top: var(--pad-3x);}
